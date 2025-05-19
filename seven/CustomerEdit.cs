@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace seven
 {
-    public partial class Login : Form
+    public partial class CustomerEdit : Form
     {
-        public Login()
+        public CustomerEdit()
         {
             InitializeComponent();
         }
