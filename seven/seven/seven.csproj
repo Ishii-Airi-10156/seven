@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarEdit.Designer.cs">
+      <DependentUpon>CarEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarInfo.Designer.cs">
+      <DependentUpon>CarInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="delivery\CustomerEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CarEdit.resx">
+      <DependentUpon>CarEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarInfo.resx">
+      <DependentUpon>CarInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="delivery\CustomerEdit.resx">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </EmbeddedResource>
