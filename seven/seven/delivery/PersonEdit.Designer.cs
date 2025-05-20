@@ -115,9 +115,9 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(158, 186);
+            this.textBox3.Location = new System.Drawing.Point(158, 190);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(118, 19);
+            this.textBox3.Size = new System.Drawing.Size(121, 19);
             this.textBox3.TabIndex = 9;
             // 
             // comboBox1
@@ -130,14 +130,14 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(156, 235);
+            this.numericUpDown1.Location = new System.Drawing.Point(158, 235);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 19);
+            this.numericUpDown1.Size = new System.Drawing.Size(123, 19);
             this.numericUpDown1.TabIndex = 11;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 289);
+            this.button1.Location = new System.Drawing.Point(16, 289);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(165, 39);
             this.button1.TabIndex = 12;
@@ -146,7 +146,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(219, 289);
+            this.button2.Location = new System.Drawing.Point(210, 289);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(153, 39);
             this.button2.TabIndex = 13;
@@ -157,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 366);
+            this.ClientSize = new System.Drawing.Size(377, 340);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown1);
