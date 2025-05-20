@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="delivery\CarEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="delivery\CarEdit.Designer.cs">
+      <DependentUpon>CarEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="delivery\CarInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="delivery\CarInfo.Designer.cs">
+      <DependentUpon>CarInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="delivery\CustomerEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,20 +112,26 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderEdit.cs">
+    <Compile Include="delivery\OrderEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OrderEdit.Designer.cs">
+    <Compile Include="delivery\OrderEdit.Designer.cs">
       <DependentUpon>OrderEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderManagement.cs">
+    <Compile Include="delivery\OrderManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OrderManagement.Designer.cs">
+    <Compile Include="delivery\OrderManagement.Designer.cs">
       <DependentUpon>OrderManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="delivery\CarEdit.resx">
+      <DependentUpon>CarEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="delivery\CarInfo.resx">
+      <DependentUpon>CarInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="delivery\CustomerEdit.resx">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +150,7 @@
     <EmbeddedResource Include="delivery\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="delivery\OrderEdit.resx">
     <EmbeddedResource Include="delivery\PersonEdit.resx">
       <DependentUpon>PersonEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,7 +160,7 @@
     <EmbeddedResource Include="OrderEdit.resx">
       <DependentUpon>OrderEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderManagement.resx">
+    <EmbeddedResource Include="delivery\OrderManagement.resx">
       <DependentUpon>OrderManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
