@@ -46,42 +46,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerEdit.cs">
+    <Compile Include="delivery\CustomerEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerEdit.Designer.cs">
+    <Compile Include="delivery\CustomerEdit.Designer.cs">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerList.cs">
+    <Compile Include="delivery\CustomerList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerList.Designer.cs">
+    <Compile Include="delivery\CustomerList.Designer.cs">
       <DependentUpon>CustomerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="delivery\GoodsEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="delivery\GoodsEdit.Designer.cs">
+      <DependentUpon>GoodsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="delivery\GoodsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="delivery\GoodsList.Designer.cs">
+      <DependentUpon>GoodsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="delivery\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="delivery\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu.cs">
+    <Compile Include="delivery\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
+    <Compile Include="delivery\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CustomerEdit.resx">
+    <EmbeddedResource Include="delivery\CustomerEdit.resx">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerList.resx">
+    <EmbeddedResource Include="delivery\CustomerList.resx">
       <DependentUpon>CustomerList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="delivery\GoodsEdit.resx">
+      <DependentUpon>GoodsEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="delivery\GoodsList.resx">
+      <DependentUpon>GoodsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="delivery\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
+    <EmbeddedResource Include="delivery\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
