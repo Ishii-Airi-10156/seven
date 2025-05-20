@@ -151,14 +151,13 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="delivery\OrderEdit.resx">
+      <DependentUpon>OrderEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="delivery\PersonEdit.resx">
       <DependentUpon>PersonEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="delivery\PersonList.resx">
       <DependentUpon>PersonList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OrderEdit.resx">
-      <DependentUpon>OrderEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="delivery\OrderManagement.resx">
       <DependentUpon>OrderManagement.cs</DependentUpon>
