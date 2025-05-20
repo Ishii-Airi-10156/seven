@@ -115,7 +115,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 27);
             this.label1.TabIndex = 4;
-            this.label1.Text = "商品管理";
+            this.label1.Text = "商品一覧";
             // 
             // label2
             // 

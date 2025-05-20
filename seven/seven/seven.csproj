@@ -82,6 +82,18 @@
     <Compile Include="delivery\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="delivery\PersonEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="delivery\PersonEdit.Designer.cs">
+      <DependentUpon>PersonEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="delivery\PersonList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="delivery\PersonList.Designer.cs">
+      <DependentUpon>PersonList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +131,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="delivery\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="delivery\PersonEdit.resx">
+      <DependentUpon>PersonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="delivery\PersonList.resx">
+      <DependentUpon>PersonList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderEdit.resx">
       <DependentUpon>OrderEdit.cs</DependentUpon>
