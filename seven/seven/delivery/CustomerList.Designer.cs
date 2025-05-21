@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,11 +42,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +62,32 @@
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(508, 215);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "顧客ID";
+            this.Column1.Name = "Column1";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "メールアドレス";
+            this.Column5.Name = "Column5";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "名前";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "住所";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "電話番号";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 105;
             // 
             // label1
             // 
@@ -134,32 +160,6 @@
             this.button5.Text = "メニューに戻る";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "顧客ID";
-            this.Column1.Name = "Column1";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "メールアドレス";
-            this.Column5.Name = "Column5";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "名前";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "住所";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "電話番号";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 105;
-            // 
             // CustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -176,6 +176,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "CustomerList";
             this.Text = "CustomerList";
+            this.Load += new System.EventHandler(this.CustomerList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
