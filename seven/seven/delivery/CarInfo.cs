@@ -36,9 +36,9 @@ namespace seven
             {
                 dataGridView1.Rows.Add();
                 int rowIdx = dataGridView1.Rows.Count - 1;
-                dataGridView1.Rows[rowIdx].Cells[0].Value = reader["active"];
-                dataGridView1.Rows[rowIdx].Cells[1].Value = reader["truck_no"];
-                dataGridView1.Rows[rowIdx].Cells[2].Value = reader["truck_capacity"];
+                dataGridView1.Rows[rowIdx].Cells[0].Value = reader["truck_no"];
+                dataGridView1.Rows[rowIdx].Cells[1].Value = reader["truck_capacity"];
+                dataGridView1.Rows[rowIdx].Cells[2].Value = reader["active"];
             }
             reader.Close();
             con.Close();
@@ -46,6 +46,26 @@ namespace seven
 
         private void CarInfo_Load(object sender, EventArgs e)
         {
+            search();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CarEdit form = new CarEdit();
+            form.ShowDialog();
+            search();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int truckNo = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            CarEdit form = new CarEdit(truckNo);
+            form.ShowDialog();
             search();
         }
     }
