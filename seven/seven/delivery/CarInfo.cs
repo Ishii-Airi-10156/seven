@@ -22,6 +22,7 @@ namespace seven
         }
         private void search()
         {
+            dataGridView1.Rows.Clear();
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT*FROM truck ");
             SqlConnection con = new SqlConnection();
