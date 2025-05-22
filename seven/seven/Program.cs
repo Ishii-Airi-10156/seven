@@ -17,7 +17,7 @@ namespace seven
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PersonList());
+            Application.Run(new Menu());
         }
     }
 }
