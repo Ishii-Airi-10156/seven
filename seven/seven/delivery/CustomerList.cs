@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace seven
 {
@@ -32,11 +33,12 @@ namespace seven
 
         private void ViewCustomerList()
         {
+            dataGridView1.Rows.Clear();
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = sqlConnectionString;
             connection.Open();
 
-            dataGridView1.Rows.Clear();
+            
 
             string sql = "SELECT * FROM customer ";
 
@@ -110,7 +112,13 @@ namespace seven
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CustomerEdit edit = new CustomerEdit();
+            int customerid = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            string emailaddress = (string)dataGridView1.CurrentRow.Cells[1].Value;
+            string customername = (string)dataGridView1.CurrentRow.Cells[2].Value;
+            string address = (string)dataGridView1.CurrentRow.Cells[3].Value;
+            string telenumber= (string)dataGridView1.CurrentRow.Cells[4].Value;
+
+            CustomerEdit edit = new CustomerEdit(customerid, emailaddress, customername, address, telenumber);
             edit.ShowDialog();
             edit.Dispose();
 
