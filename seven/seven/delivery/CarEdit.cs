@@ -26,6 +26,7 @@ namespace seven
         {
             InitializeComponent();
             textBox5.Text = no.ToString();
+            textBox5.ReadOnly = true;
             Read();
         }
 
@@ -35,6 +36,12 @@ namespace seven
         }
         private void Insert(int n)
         {
+            errorProvider1.Clear();
+            if (String.IsNullOrEmpty(textBox6.Text))
+            {
+                errorProvider1.SetError(textBox6, "積載量を入力してください");
+                return;
+            }
             string sql = "INSERT INTO truck(truck_capacity,active)" +
                 "VALUES('" + textBox6.Text + "'," + n + ")";
             SqlConnection con = new SqlConnection();
@@ -45,6 +52,7 @@ namespace seven
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
             con.Close();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,9 +72,23 @@ namespace seven
             }
             else
             {
-                Update(n);
+                errorProvider1.Clear();
+                if (String.IsNullOrEmpty(textBox6.Text))
+                {
+                    errorProvider1.SetError(textBox6, "積載量を入力してください");
+                    return;
+                }
+                if (Convert.ToInt32(textBox6.Text) >= 250)
+                {
+                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    return;
+                }
+                else
+                {
+                    Update(n);
+                }
+                
             }
-            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -75,6 +97,7 @@ namespace seven
         }
         private void Update(int n)
         {
+            
             string sql = "UPDATE truck " + "SET truck_capacity=@p1,active=@p2 " +
                 "WHERE truck_no=@p3";
             SqlConnection con = new SqlConnection();
@@ -89,6 +112,7 @@ namespace seven
             cmd.Parameters.Add("@p3", SqlDbType.Int).Value = textBox5.Text;
             cmd.ExecuteNonQuery();
             con.Close();
+            this.Close();
         }
         private void Read()
         {
