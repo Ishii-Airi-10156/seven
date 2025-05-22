@@ -85,7 +85,6 @@ namespace seven
         }
         private void delete()
         {
-            
             string sql = ("DELETE FROM truck WHERE truck_no=@p");
             SqlConnection con = new SqlConnection();
             con.ConnectionString = sqlConnectionString;
@@ -95,6 +94,33 @@ namespace seven
             cmd.Parameters["@p"].Value = (int)dataGridView1.CurrentRow.Cells[0].Value;
             cmd.Connection = con;
             cmd.CommandText = sql.ToString();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            search();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int n;
+            string sql = "UPDATE truck " + "SET active=@p1 " +
+                "WHERE truck_no=@p2";
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = sqlConnectionString;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = sql;
+            cmd.CommandTimeout = 60;
+            if(!(Boolean)dataGridView1.CurrentRow.Cells[2].Value)
+            {
+                n = 1;
+            }
+            else
+            {
+                n=0;
+            }
+            cmd.Parameters.Add("@p1", SqlDbType.Bit).Value = n;
+            cmd.Parameters.Add("@p2", SqlDbType.Int).Value = (int)dataGridView1.CurrentRow.Cells[0].Value;
             cmd.ExecuteNonQuery();
             con.Close();
             search();
