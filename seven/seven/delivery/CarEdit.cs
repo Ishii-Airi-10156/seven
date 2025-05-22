@@ -43,7 +43,7 @@ namespace seven
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = sql;
-            int result = cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
             con.Close();
         }
 
@@ -87,7 +87,7 @@ namespace seven
             cmd.Parameters.Add("@p1", SqlDbType.NVarChar).Value = textBox6.Text;
             cmd.Parameters.Add("@p2", SqlDbType.Int).Value = n;
             cmd.Parameters.Add("@p3", SqlDbType.Int).Value = textBox5.Text;
-            int result = cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
             con.Close();
         }
         private void Read()

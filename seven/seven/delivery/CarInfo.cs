@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace seven
 {
@@ -66,6 +67,26 @@ namespace seven
             int truckNo = (int)dataGridView1.CurrentRow.Cells[0].Value;
             CarEdit form = new CarEdit(truckNo);
             form.ShowDialog();
+            search();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(dataGridView1.Rows.Count <= 0)
+            {
+                return;
+            }
+            string sql=("DELETE FROM truck WHERE truck_no=@p");
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = sqlConnectionString;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Parameters.Add("@p", SqlDbType.Int);
+            cmd.Parameters["@p"].Value = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            cmd.Connection = con;
+            cmd.CommandText = sql.ToString();
+            cmd.ExecuteNonQuery();
+            con.Close();
             search();
         }
     }
