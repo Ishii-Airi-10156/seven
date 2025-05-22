@@ -36,12 +36,6 @@ namespace seven
         }
         private void Insert(int n)
         {
-            errorProvider1.Clear();
-            if (String.IsNullOrEmpty(textBox6.Text))
-            {
-                errorProvider1.SetError(textBox6, "積載量を入力してください");
-                return;
-            }
             string sql = "INSERT INTO truck(truck_capacity,active)" +
                 "VALUES('" + textBox6.Text + "'," + n + ")";
             SqlConnection con = new SqlConnection();
@@ -66,9 +60,33 @@ namespace seven
             {
                 n = 0;
             }
+            int n2 = 0;
             if (String.IsNullOrEmpty(textBox5.Text))
             {
-                Insert(n);
+                errorProvider1.Clear();
+                if (String.IsNullOrEmpty(textBox6.Text))
+                {
+                    errorProvider1.SetError(textBox6, "積載量を入力してください");
+                    textBox6.Clear();
+                    return;
+                }
+                else if (!int.TryParse(textBox6.Text,out n2))
+                {
+                    errorProvider1.SetError(textBox6,"数値を入力してください");
+                    textBox6.Clear();
+                    return;
+                }
+                else if (Convert.ToInt32(textBox6.Text) >= 250)
+                {
+                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    textBox6.Clear();
+                    return;
+                }
+                else
+                {
+                    Insert(n);
+                }
+                
             }
             else
             {
@@ -76,11 +94,19 @@ namespace seven
                 if (String.IsNullOrEmpty(textBox6.Text))
                 {
                     errorProvider1.SetError(textBox6, "積載量を入力してください");
+                    textBox6.Clear();
                     return;
                 }
-                if (Convert.ToInt32(textBox6.Text) >= 250)
+                 else if (!int.TryParse(textBox6.Text, out n2))
+                {
+                    errorProvider1.SetError(textBox6, "数値を入力してください");
+                    textBox6.Clear();
+                    return;
+                }
+                else if (Convert.ToInt32(textBox6.Text) >= 250)
                 {
                     errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    textBox6.Clear();
                     return;
                 }
                 else
