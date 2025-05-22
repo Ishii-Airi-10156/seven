@@ -72,13 +72,20 @@ namespace seven
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult =MessageBox.Show("本当に削除してもよろしいですか?", "削除",
+            DialogResult result =MessageBox.Show("本当に削除してもよろしいですか?", "削除",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (dataGridView1.Rows.Count==((int)dialogResult))
+            if (result == DialogResult.Yes)
+            {
+                if (dataGridView1.Rows.Count == ((int)result))
+                {
+                    return;
+                }
+                delete();
+            }
+            else if(result == DialogResult.No) 
             {
                 return;
             }
-            delete();
         }
         private void delete()
         {
