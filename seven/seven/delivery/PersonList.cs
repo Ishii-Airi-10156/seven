@@ -22,8 +22,7 @@ namespace seven.delivery
         public PersonList(int row,int de)
         {
             InitializeComponent();
-            ind = row;
-            delivered = de;
+            list[row] = de;
         }
         public PersonList()
         {
@@ -52,7 +51,7 @@ namespace seven.delivery
                         while (reader.Read())
                         {
                             dataGridView1.Rows.Add(reader["emp_id"], reader["active"], reader["emp_name"], reader["area"], reader["truck_no"], 0 + "/" + reader["truck_capacity"]);
-                            list.Add
+                            list.Add(0);
                         }
                     }
                 }
@@ -93,7 +92,29 @@ namespace seven.delivery
 
         private void button2_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult =
+                MessageBox.Show("選択したデータを削除しますか？", "確認",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+            int emp_id = (int)dataGridView1.CurrentRow.Cells[0].Value;
 
+            string sqp = "delete from employee where emp_id = @p1";
+            using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqp, connection);
+                command.Parameters.Add("@p1", SqlDbType.Int).Value = emp_id;
+                int result = command.ExecuteNonQuery();
+                ShowList();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
