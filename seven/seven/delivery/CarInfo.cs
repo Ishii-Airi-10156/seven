@@ -76,10 +76,6 @@ namespace seven
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result == DialogResult.Yes)
             {
-                if (dataGridView1.Rows.Count == ((int)result))
-                {
-                    return;
-                }
                 delete();
             }
             else if(result == DialogResult.No) 
