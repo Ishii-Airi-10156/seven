@@ -72,11 +72,18 @@ namespace seven
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.Rows.Count <= 0)
+            DialogResult dialogResult =MessageBox.Show("本当に削除してもよろしいですか?", "削除",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (dataGridView1.Rows.Count==((int)dialogResult))
             {
                 return;
             }
-            string sql=("DELETE FROM truck WHERE truck_no=@p");
+            delete();
+        }
+        private void delete()
+        {
+            
+            string sql = ("DELETE FROM truck WHERE truck_no=@p");
             SqlConnection con = new SqlConnection();
             con.ConnectionString = sqlConnectionString;
             con.Open();
