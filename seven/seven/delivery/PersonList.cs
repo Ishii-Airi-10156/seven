@@ -52,7 +52,7 @@ namespace seven.delivery
                         while (reader.Read())
                         {
                             dataGridView1.Rows.Add(reader["emp_id"], reader["active"], reader["emp_name"], reader["area"], reader["truck_no"], 0 + "/" + reader["truck_capacity"]);
-                            list.Add
+                            //list.Add
                         }
                     }
                 }

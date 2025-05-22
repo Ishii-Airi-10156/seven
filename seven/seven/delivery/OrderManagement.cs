@@ -69,7 +69,7 @@ namespace seven
                 int n;
                 int j;
                 StringBuilder sql= new StringBuilder();
-                sql.Append("UPDATE order_item "); 
+                sql.Append("UPDATE order_item SET okihai=@p1,delivered = @p2 WHERE order_no=@p3"); 
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = sqlConnectionString;
                 con.Open();
@@ -77,31 +77,27 @@ namespace seven
                 cmd.Connection = con;
                 cmd.CommandText = sql.ToString();
                 cmd.CommandTimeout = 60;
-                if ((Boolean)dataGridView1.CurrentRow.Cells[5].Value)
+                if (0==(int)dataGridView1.CurrentRow.Cells[5].Value)
                 {
                     n = 0;
-                    sql.Append("SET okihai=@p1 WHERE order_no=@p2 ");
                     cmd.Parameters.Add("@p1", SqlDbType.Bit).Value = n;
                 }
-                else if(!(Boolean)dataGridView1.CurrentRow.Cells[5].Value)
+                else
                 {
                     n = 1;
-                    sql.Append("SET okihai=@p1 WHERE order_no=@p2 ");
                     cmd.Parameters.Add("@p1", SqlDbType.Bit).Value = n;
                 }
-                else if ((Boolean)dataGridView1.CurrentRow.Cells[7].Value)
+                if (0==(int)dataGridView1.CurrentRow.Cells[7].Value)
                 {
                     j = 0;
-                    sql.Append("SET delivered = @p1 WHERE order_no=@p2 ");
-                    cmd.Parameters.Add("@p1", SqlDbType.Bit).Value = j;
+                    cmd.Parameters.Add("@p2", SqlDbType.Bit).Value = j;
                 }
                 else
                 {
                     j = 1;
-                    sql.Append("SET delivered = @p1 WHERE order_no=@p2 ");
-                    cmd.Parameters.Add("@p1", SqlDbType.Bit).Value = j;
+                    cmd.Parameters.Add("@p2", SqlDbType.Bit).Value = j;
                 } 
-                cmd.Parameters.Add("@p2", SqlDbType.Int).Value = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                cmd.Parameters.Add("@p3", SqlDbType.Int).Value = (int)dataGridView1.CurrentRow.Cells[0].Value;
                 cmd.ExecuteNonQuery();
                 con.Close();
                 search();
