@@ -26,6 +26,8 @@ namespace seven
 
         private void CustomerList_Load(object sender, EventArgs e)
         {
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
 
             ViewCustomerList();
 
@@ -91,11 +93,13 @@ namespace seven
 
                 if (!String.IsNullOrEmpty(textBox1.Text))
                 {
-                    sql.Append("WHERE customer_name LIKE '%" + textBox1.Text + "%' ");
+                    sql.Append("WHERE customer_name LIKE @p1 ");
 
                     SqlCommand command = new SqlCommand();
                     command.Connection = connection;
                     command.CommandText = sql.ToString();
+                    string name = "%" + textBox1.Text.Trim() + "%";
+                    command.Parameters.Add("@p1", SqlDbType.NVarChar).Value = name;
 
                     SqlDataReader reader = command.ExecuteReader();
 
@@ -137,24 +141,33 @@ namespace seven
             string emailaddress = (string)dataGridView1.CurrentRow.Cells[1].Value;
             string customername = (string)dataGridView1.CurrentRow.Cells[2].Value;
             string address = (string)dataGridView1.CurrentRow.Cells[3].Value;
-            string telenumber= (string)dataGridView1.CurrentRow.Cells[4].Value;
+            string telenumber = (string)dataGridView1.CurrentRow.Cells[4].Value;
 
             CustomerEdit edit = new CustomerEdit(customerid, emailaddress, customername, address, telenumber);
             edit.ShowDialog();
-            edit.Dispose();
 
             ViewCustomerList();
-        }
 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if((int)row.Cells[0].Value == customerid)
+                row.Selected = true;
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
 
             CustomerEdit edit = new CustomerEdit();
-            edit.ShowDialog();
-            edit.Dispose();
+            if (edit.ShowDialog() == DialogResult.Yes)
+            {
 
-            ViewCustomerList();
+                ViewCustomerList();
 
+                int count = dataGridView1.RowCount - 1;
+                dataGridView1[0, count].Selected = true;
+
+             }
+           
         }
 
         private void button5_Click(object sender, EventArgs e)

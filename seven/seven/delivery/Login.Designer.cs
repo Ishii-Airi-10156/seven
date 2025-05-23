@@ -55,14 +55,14 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '●';
             this.textBox2.Size = new System.Drawing.Size(182, 19);
-            this.textBox2.TabIndex = 10;
+            this.textBox2.TabIndex = 1;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(128, 107);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(184, 19);
-            this.textBox1.TabIndex = 9;
+            this.textBox1.TabIndex = 0;
             // 
             // label2
             // 
@@ -87,7 +87,7 @@
             this.LoginButton.Location = new System.Drawing.Point(90, 212);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(240, 40);
-            this.LoginButton.TabIndex = 6;
+            this.LoginButton.TabIndex = 2;
             this.LoginButton.Text = "ログイン";
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
@@ -109,6 +109,7 @@
             this.Controls.Add(this.LoginButton);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

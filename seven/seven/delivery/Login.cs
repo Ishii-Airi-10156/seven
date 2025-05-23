@@ -15,11 +15,19 @@ namespace seven
 {
     public partial class Login : Form
     {
+
         private readonly string sqlConnectionString =
                ConfigurationManager.ConnectionStrings["delivery_system"].ConnectionString;
         public Login()
         {
-            InitializeComponent();
+              InitializeComponent();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            this.textBox1.Focus();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -47,6 +55,14 @@ namespace seven
                     textBox1.Focus();
                     error = true;
                 }
+
+                //if ((int)reader == 0)
+                //{
+                //    errorProvider1.SetError(textBox1, "数字で入力してください");
+                //    textBox1.Focus();
+                //    error = true;
+                //}
+
             }
             catch(SqlException sqlexc)
             {
@@ -88,8 +104,12 @@ namespace seven
             Menu menu = new Menu();
             menu.ShowDialog();
             menu.Dispose();
+            textBox1.Clear();
+            textBox2.Clear();
             this.Show();
                   
         }
+
+       
     }
 }

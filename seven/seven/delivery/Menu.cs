@@ -47,5 +47,11 @@ namespace seven
             OrderManagement form=new OrderManagement();
             form.ShowDialog();
         }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+        }
     }
 }

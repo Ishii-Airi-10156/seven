@@ -34,8 +34,9 @@ namespace seven
 
         private void CustomerEdit_Load(object sender, EventArgs e)
         {
-            
-         }
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+        }
 
         private void UpdateCusInfo()
         {
@@ -124,6 +125,15 @@ namespace seven
             {
                 //更新モードならUPDATE処理
                 UpdateCusInfo();
+                DialogResult dialogResult =
+               MessageBox.Show("選択したデータを更新しますか？", "確認",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+                this.DialogResult = dialogResult;
             }
 
             this.Close();
@@ -162,6 +172,7 @@ namespace seven
             {
                 MessageBox.Show(exc.Message);
             }
+            this.DialogResult = DialogResult.Yes;
         }
            
         private void button2_Click(object sender, EventArgs e)
