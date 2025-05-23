@@ -66,9 +66,15 @@ namespace seven
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int count1 = dataGridView1.RowCount - 1;
             CarEdit form = new CarEdit();
             form.ShowDialog();
             search();
+            int count2 = dataGridView1.RowCount-1;
+            if(count1!=count2)
+            {
+                dataGridView1[0, count2].Selected = true;
+            }       
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -77,6 +83,14 @@ namespace seven
             CarEdit form = new CarEdit(truckNo);
             form.ShowDialog();
             search();
+            foreach(DataGridViewRow dt in dataGridView1.Rows)
+            {
+                if ((int)dt.Cells[0].Value==truckNo)
+                {
+                    dt.Selected = true;
+                }
+                
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -100,6 +100,12 @@ namespace seven
                 }
                 else
                 {
+                    DialogResult result = MessageBox.Show("本当に追加しますか?", "追加",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                     Insert(n);
                 }
                 
@@ -133,6 +139,12 @@ namespace seven
                 }
                 else
                 {
+                    DialogResult result = MessageBox.Show("本当に編集しますか?", "編集",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                     Update(n);
                 }
                 
