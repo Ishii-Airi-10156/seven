@@ -61,9 +61,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(64, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 12);
+            this.label2.Size = new System.Drawing.Size(46, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "顧客No：";
+            this.label2.Text = "顧客ID：";
             // 
             // label3
             // 
@@ -105,6 +105,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(137, 85);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(178, 19);
             this.textBox1.TabIndex = 6;
             // 
