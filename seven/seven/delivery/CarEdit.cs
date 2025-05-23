@@ -26,6 +26,7 @@ namespace seven
         {
             InitializeComponent();
             textBox5.Text = no.ToString();
+            textBox5.ReadOnly = true;
             Read();
         }
 
@@ -35,16 +36,24 @@ namespace seven
         }
         private void Insert(int n)
         {
-            string sql = "INSERT INTO truck(truck_capacity,active)" +
-                "VALUES('" + textBox6.Text + "'," + n + ")";
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = sqlConnectionString;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = sql;
-            int result = cmd.ExecuteNonQuery();
-            con.Close();
+            try
+            {
+                string sql = "INSERT INTO truck(truck_capacity,active)" +
+                    "VALUES('" + textBox6.Text + "'," + n + ")";
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = sqlConnectionString;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,15 +67,61 @@ namespace seven
             {
                 n = 0;
             }
+            int n2 = 0;
             if (String.IsNullOrEmpty(textBox5.Text))
             {
-                Insert(n);
+                errorProvider1.Clear();
+                if (String.IsNullOrEmpty(textBox6.Text))
+                {
+                    errorProvider1.SetError(textBox6, "積載量を入力してください");
+                    textBox6.Clear();
+                    return;
+                }
+                else if (!int.TryParse(textBox6.Text,out n2))
+                {
+                    errorProvider1.SetError(textBox6,"数値を入力してください");
+                    textBox6.Clear();
+                    return;
+                }
+                else if (Convert.ToInt32(textBox6.Text) >= 250)
+                {
+                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    textBox6.Clear();
+                    return;
+                }
+                else
+                {
+                    Insert(n);
+                }
+                
             }
             else
             {
-                Update(n);
+                errorProvider1.Clear();
+                if (String.IsNullOrEmpty(textBox6.Text))
+                {
+                    errorProvider1.SetError(textBox6, "積載量を入力してください");
+                    textBox6.Clear();
+                    return;
+                }
+                 else if (!int.TryParse(textBox6.Text, out n2))
+                {
+                    errorProvider1.SetError(textBox6, "数値を入力してください");
+                    textBox6.Clear();
+                    return;
+                }
+                else if (Convert.ToInt32(textBox6.Text) >= 250)
+                {
+                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    textBox6.Clear();
+                    return;
+                }
+                else
+                {
+                    Update(n);
+                }
+                
             }
-            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -75,40 +130,55 @@ namespace seven
         }
         private void Update(int n)
         {
-            string sql = "UPDATE truck " + "SET truck_capacity=@p1,active=@p2 " +
-                "WHERE truck_no=@p3";
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = sqlConnectionString;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = sql;
-            cmd.CommandTimeout = 60;
-            cmd.Parameters.Add("@p1", SqlDbType.NVarChar).Value = textBox6.Text;
-            cmd.Parameters.Add("@p2", SqlDbType.Int).Value = n;
-            cmd.Parameters.Add("@p3", SqlDbType.Int).Value = textBox5.Text;
-            int result = cmd.ExecuteNonQuery();
-            con.Close();
+            try
+            {
+                string sql = "UPDATE truck " + "SET truck_capacity=@p1,active=@p2 " +
+                    "WHERE truck_no=@p3";
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = sqlConnectionString;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = sql;
+                cmd.CommandTimeout = 60;
+                cmd.Parameters.Add("@p1", SqlDbType.NVarChar).Value = textBox6.Text;
+                cmd.Parameters.Add("@p2", SqlDbType.Int).Value = n;
+                cmd.Parameters.Add("@p3", SqlDbType.Int).Value = textBox5.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void Read()
         {
-            string sql = "SELECT*FROM truck WHERE truck_no = @p";
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = sqlConnectionString;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = sql.ToString();
-            cmd.Parameters.Add("@p", SqlDbType.Int);
-            cmd.Parameters["@p"].Value = textBox5.Text;
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            try
             {
-                textBox6.Text =Convert.ToString(reader["truck_capacity"]);
-                checkBox1.Checked= Convert.ToBoolean(reader["active"]);
+                string sql = "SELECT*FROM truck WHERE truck_no = @p";
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = sqlConnectionString;
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = sql.ToString();
+                cmd.Parameters.Add("@p", SqlDbType.Int);
+                cmd.Parameters["@p"].Value = textBox5.Text;
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    textBox6.Text = Convert.ToString(reader["truck_capacity"]);
+                    checkBox1.Checked = Convert.ToBoolean(reader["active"]);
+                }
+                reader.Close();
+                con.Close();
             }
-            reader.Close();
-            con.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -55,39 +55,49 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(19, 110);
+            this.dataGridView1.Location = new System.Drawing.Point(1, 110);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 40;
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(508, 215);
+            this.dataGridView1.Size = new System.Drawing.Size(738, 215);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
             // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column1.HeaderText = "顧客ID";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column5
             // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column5.HeaderText = "メールアドレス";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // Column2
             // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.HeaderText = "名前";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // Column3
             // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column3.HeaderText = "住所";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column4.HeaderText = "電話番号";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 105;
+            this.Column4.ReadOnly = true;
             // 
             // label1
             // 
@@ -107,6 +117,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "検索";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -126,45 +137,49 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(3, 372);
+            this.button2.Location = new System.Drawing.Point(32, 372);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(107, 33);
             this.button2.TabIndex = 5;
             this.button2.Text = "編集";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(133, 372);
+            this.button3.Location = new System.Drawing.Point(163, 372);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(107, 33);
             this.button3.TabIndex = 6;
             this.button3.Text = "新規登録";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(265, 372);
+            this.button4.Location = new System.Drawing.Point(288, 372);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 33);
             this.button4.TabIndex = 7;
             this.button4.Text = "削除";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(410, 372);
+            this.button5.Location = new System.Drawing.Point(537, 372);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(107, 33);
             this.button5.TabIndex = 8;
             this.button5.Text = "メニューに戻る";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // CustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 417);
+            this.ClientSize = new System.Drawing.Size(741, 472);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);

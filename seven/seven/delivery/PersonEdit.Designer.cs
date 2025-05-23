@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,7 +42,9 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -103,22 +106,24 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(158, 81);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(121, 19);
             this.textBox1.TabIndex = 6;
+            this.textBox1.TabStop = false;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(158, 113);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(121, 19);
-            this.textBox2.TabIndex = 7;
+            this.textBox2.TabIndex = 0;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(158, 190);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(121, 19);
-            this.textBox3.TabIndex = 9;
+            this.textBox3.TabIndex = 2;
             // 
             // comboBox1
             // 
@@ -126,14 +131,15 @@
             this.comboBox1.Location = new System.Drawing.Point(158, 151);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 10;
+            this.comboBox1.TabIndex = 1;
+            this.comboBox1.Click += new System.EventHandler(this.comboBox1_Click);
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(158, 235);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(123, 19);
-            this.numericUpDown1.TabIndex = 11;
+            this.numericUpDown1.TabIndex = 3;
             // 
             // button1
             // 
@@ -143,6 +149,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "確定";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -152,6 +159,11 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "キャンセル";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // PersonEdit
             // 
@@ -173,8 +185,8 @@
             this.Controls.Add(this.label1);
             this.Name = "PersonEdit";
             this.Text = "PersonEdit";
-            this.Load += new System.EventHandler(this.PersonEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,5 +207,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
