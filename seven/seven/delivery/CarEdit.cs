@@ -89,6 +89,12 @@ namespace seven
                     textBox6.Clear();
                     return;
                 }
+                else if (Convert.ToInt32(textBox6.Text) <= 1)
+                {
+                    errorProvider1.SetError(textBox6, "積載量は1以上にしてください");
+                    textBox6.Clear();
+                    return;
+                }
                 else
                 {
                     Insert(n);
@@ -113,6 +119,12 @@ namespace seven
                 else if (Convert.ToInt32(textBox6.Text) >= 250)
                 {
                     errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    textBox6.Clear();
+                    return;
+                }
+                else if (Convert.ToInt32(textBox6.Text) <= 1)
+                {
+                    errorProvider1.SetError(textBox6, "積載量は1以上にしてください");
                     textBox6.Clear();
                     return;
                 }
