@@ -130,10 +130,28 @@ namespace seven.delivery
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int emp_id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            int truck_no = (int)dataGridView1.CurrentRow.Cells[4].Value;
             bool active = (bool)dataGridView1.CurrentRow.Cells[1].Value;
             if (active == false)
             {
-                string sql = "update employee set active = 1 where emp_id = @p1";
+
+                string sql;
+                using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    sql = "select count(*) from employee where truck_no = @p1 and active = 1";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.Add("@p1", SqlDbType.Int).Value = truck_no;
+                    int result = (int)command.ExecuteScalar();
+                    if (result > 0)
+                    {
+                        MessageBox.Show("このトラックは使用中です");
+                        ShowList();
+                        return;
+                        
+                    }
+                }
+                sql = "update employee set active = 1 where emp_id = @p1";
                 using (SqlConnection connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
