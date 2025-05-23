@@ -80,21 +80,21 @@ namespace seven.delivery
             {
                 errorProvider1.SetError(textBox2, "名前を入力してください");
                 c = false;
-                return;
+                
             }
             if(String.IsNullOrEmpty(comboBox1.Text))
             {
                 errorProvider1.SetError(comboBox1, "エリアを選択してください");
                 c = false;
-                return;
+                
             }
             if (String.IsNullOrEmpty(textBox3.Text))
             {
                 errorProvider1.SetError(textBox3, "トラックナンバーを入力してください");
                 c = false;
-                return;
+                
             }
-            if (int.TryParse(textBox3.Text,out int num))
+            else if (int.TryParse(textBox3.Text,out int num))
             {
                 try
                 {
@@ -108,7 +108,7 @@ namespace seven.delivery
                         {
                             errorProvider1.SetError(textBox3, "存在しないトラックナンバーです");
                             c = false;
-                            return;
+                            
                         }
                     }
                 }
@@ -134,7 +134,7 @@ namespace seven.delivery
                     {
                         errorProvider1.SetError(numericUpDown1, "トラックの積載量を超えています");
                         c = false;
-                        return;
+                        
                     }
                 }
             }
@@ -146,7 +146,11 @@ namespace seven.delivery
             {
                 MessageBox.Show("エラー: " + ex.Message);
             }
-            if (!String.IsNullOrEmpty(textBox1.Text) && c == true)
+            if(c == false)
+            {
+                return;
+            }
+            if (!String.IsNullOrEmpty(textBox1.Text) )
             {
                 DateUpdate();
             }

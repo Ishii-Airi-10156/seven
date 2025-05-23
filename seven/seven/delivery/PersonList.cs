@@ -126,5 +126,35 @@ namespace seven.delivery
         {
             this.Close();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int emp_id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            bool active = (bool)dataGridView1.CurrentRow.Cells[1].Value;
+            if (active == false)
+            {
+                string sql = "update employee set active = 1 where emp_id = @p1";
+                using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.Add("@p1", SqlDbType.Int).Value = emp_id;
+                    int result = command.ExecuteNonQuery();
+                    ShowList();
+                }
+            }
+            else
+            {
+                string sql = "update employee set active = 0 where emp_id = @p1";
+                using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.Add("@p1", SqlDbType.Int).Value = emp_id;
+                    int result = command.ExecuteNonQuery();
+                    ShowList();
+                }
+            }
+        }
     }
 }
