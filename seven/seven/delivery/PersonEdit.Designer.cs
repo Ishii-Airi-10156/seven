@@ -183,6 +183,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(393, 379);
             this.Name = "PersonEdit";
             this.Text = "PersonEdit";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

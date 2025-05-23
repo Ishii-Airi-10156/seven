@@ -75,17 +75,30 @@ namespace seven.delivery
             PersonEdit from = new PersonEdit(e_num, e_name, e_area, e_tno,ico);
             from.ShowDialog();
             from.Dispose();
-            
             ShowList();
+            foreach (DataGridViewRow dt in dataGridView1.Rows)
+            {
+                if ((int)dt.Cells[0].Value == e_num)
+                {
+                    dt.Selected = true;
+                }
+
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int count1 = dataGridView1.RowCount - 1;
             PersonEdit from = new PersonEdit();
             from.ShowDialog();
             from.Dispose();
 
             ShowList();
+            int count2 = dataGridView1.RowCount - 1;
+            if (count1 != count2)
+            {
+                dataGridView1[0, count2].Selected = true;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

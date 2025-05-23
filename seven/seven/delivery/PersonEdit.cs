@@ -79,10 +79,17 @@ namespace seven.delivery
             if(String.IsNullOrEmpty(textBox2.Text))
             {
                 errorProvider1.SetError(textBox2, "名前を入力してください");
+
                 c = false;
                 
             }
-            if(String.IsNullOrEmpty(comboBox1.Text))
+            if(int.TryParse(textBox2.Text, out int nnum))
+            {
+                errorProvider1.SetError(textBox2, "名前は数字を入力できません");
+                c = false;
+
+            }
+            if (String.IsNullOrEmpty(comboBox1.Text))
             {
                 errorProvider1.SetError(comboBox1, "エリアを選択してください");
                 c = false;
@@ -94,8 +101,12 @@ namespace seven.delivery
                 c = false;
                 
             }
-            else if (int.TryParse(textBox3.Text,out int num))
+            else if (!String.IsNullOrEmpty(textBox3.Text))
             {
+                if (int.TryParse(textBox3.Text, out int num))
+                {
+                    
+                }
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(sqlConnectionString))
@@ -150,7 +161,7 @@ namespace seven.delivery
             {
                 return;
             }
-            if (!String.IsNullOrEmpty(textBox1.Text) )
+            if (!String.IsNullOrEmpty(textBox1.Text))
             {
                 DateUpdate();
             }
