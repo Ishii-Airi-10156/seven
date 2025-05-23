@@ -21,6 +21,9 @@ namespace seven
             InitializeComponent();
             label7.Visible = false;
             textBox5.Visible = false;
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+            textBox6.Focus();
         }
         public CarEdit(int no)
         {
@@ -83,9 +86,9 @@ namespace seven
                     textBox6.Clear();
                     return;
                 }
-                else if (Convert.ToInt32(textBox6.Text) >= 250)
+                else if (Convert.ToInt32(textBox6.Text) >= 150)
                 {
-                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    errorProvider1.SetError(textBox6, "規定値を超えています(規定値150)");
                     textBox6.Clear();
                     return;
                 }

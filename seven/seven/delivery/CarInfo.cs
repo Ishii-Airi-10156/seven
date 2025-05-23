@@ -20,6 +20,8 @@ namespace seven
         public CarInfo()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
         }
         private void search()
         {
