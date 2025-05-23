@@ -29,16 +29,17 @@ namespace seven
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT customer_id,customer_name FROM customer ");
             SqlConnection con = new SqlConnection();
-                con.ConnectionString = sqlConnectionString;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = sql.ToString();
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    comboBox1.Items.Add($"{reader["customer_id"]} { reader["customer_name"]}");
-                }
+            con.ConnectionString = sqlConnectionString;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = sql.ToString();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                comboBox1.Items.Add($"{reader["customer_id"]} { reader["customer_name"]}");
+                
+            }
         }
         public void SalesRead()
         {
