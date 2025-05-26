@@ -59,10 +59,10 @@ namespace seven
                     int idx = dataGridView1.Rows.Count - 1;
 
                     dataGridView1.Rows[idx].Cells[0].Value = reader["customer_id"];
-                    dataGridView1.Rows[idx].Cells[1].Value = reader["email_address"];
-                    dataGridView1.Rows[idx].Cells[2].Value = reader["customer_name"];
-                    dataGridView1.Rows[idx].Cells[3].Value = reader["address"];
-                    dataGridView1.Rows[idx].Cells[4].Value = reader["tele_number"];
+                    dataGridView1.Rows[idx].Cells[1].Value = reader["customer_name"];
+                    dataGridView1.Rows[idx].Cells[2].Value = reader["address"];
+                    dataGridView1.Rows[idx].Cells[3].Value = reader["tele_number"];
+                    dataGridView1.Rows[idx].Cells[4].Value = reader["email_address"];
                 }
 
                 reader.Close();
@@ -109,10 +109,10 @@ namespace seven
                         int idx = dataGridView1.Rows.Count - 1;
 
                         dataGridView1.Rows[idx].Cells[0].Value = reader["customer_id"];
-                        dataGridView1.Rows[idx].Cells[1].Value = reader["email_address"];
-                        dataGridView1.Rows[idx].Cells[2].Value = reader["customer_name"];
-                        dataGridView1.Rows[idx].Cells[3].Value = reader["address"];
-                        dataGridView1.Rows[idx].Cells[4].Value = reader["tele_number"];
+                        dataGridView1.Rows[idx].Cells[1].Value = reader["customer_name"];
+                        dataGridView1.Rows[idx].Cells[2].Value = reader["address"];
+                        dataGridView1.Rows[idx].Cells[3].Value = reader["tele_number"];
+                        dataGridView1.Rows[idx].Cells[4].Value = reader["email_address"];
 
                     }
                     reader.Close();
@@ -137,21 +137,36 @@ namespace seven
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int customerid = (int)dataGridView1.CurrentRow.Cells[0].Value;
-            string emailaddress = (string)dataGridView1.CurrentRow.Cells[1].Value;
-            string customername = (string)dataGridView1.CurrentRow.Cells[2].Value;
-            string address = (string)dataGridView1.CurrentRow.Cells[3].Value;
-            string telenumber = (string)dataGridView1.CurrentRow.Cells[4].Value;
 
-            CustomerEdit edit = new CustomerEdit(customerid, emailaddress, customername, address, telenumber);
-            edit.ShowDialog();
+            errorProvider1.Clear();
 
-            ViewCustomerList();
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
-                if((int)row.Cells[0].Value == customerid)
-                row.Selected = true;
+                MessageBox.Show("編集する行を選択してください");
+                return;
+            }
+
+            else
+            {
+                int customerid = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                string customername = (string)dataGridView1.CurrentRow.Cells[1].Value;
+                string  address= (string)dataGridView1.CurrentRow.Cells[2].Value;
+                string telenumber = (string)dataGridView1.CurrentRow.Cells[3].Value;
+                string emailaddress = (string)dataGridView1.CurrentRow.Cells[4].Value;
+                                                 
+
+                CustomerEdit edit = new CustomerEdit(customerid, emailaddress, customername, address, telenumber);
+                edit.ShowDialog();
+
+                ViewCustomerList();
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if ((int)row.Cells[0].Value == customerid)
+                    {
+                        row.Selected = true;
+                    }
+                }
             }
         }
         private void button3_Click(object sender, EventArgs e)
@@ -177,45 +192,56 @@ namespace seven
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult =
-                MessageBox.Show("選択したデータを削除しますか？", "確認",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            errorProvider1.Clear();
 
-            if (dialogResult == DialogResult.No)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
+                MessageBox.Show("削除する行を選択してください");
                 return;
             }
-            try
+
+            else
             {
+                DialogResult dialogResult =
+                    MessageBox.Show("選択したデータを削除しますか？", "確認",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
-                int customerId = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+                try
+                {
 
-                string sql = "DELETE customer WHERE customer_id = @p";
+                    int customerId = (int)dataGridView1.CurrentRow.Cells[0].Value;
 
-                SqlConnection connection = new SqlConnection();
-                connection.ConnectionString = sqlConnectionString;
-                connection.Open();
+                    string sql = "DELETE customer WHERE customer_id = @p";
 
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandText = sql.ToString();
+                    SqlConnection connection = new SqlConnection();
+                    connection.ConnectionString = sqlConnectionString;
+                    connection.Open();
 
-                command.Parameters.Add("@p", SqlDbType.Int).Value = customerId;
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = sql.ToString();
 
-                int result = command.ExecuteNonQuery();
-                connection.Close();
+                    command.Parameters.Add("@p", SqlDbType.Int).Value = customerId;
 
+                    int result = command.ExecuteNonQuery();
+                    connection.Close();
 
-                ViewCustomerList();
-                MessageBox.Show("削除しました。");
-            }
-            catch (SqlException sqlexc)
-            {
-                MessageBox.Show(sqlexc.Message);
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
+                    ViewCustomerList();
+
+                    MessageBox.Show("削除しました。");
+                }
+                catch (SqlException sqlexc)
+                {
+                    MessageBox.Show(sqlexc.Message);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
             }
         }
     }

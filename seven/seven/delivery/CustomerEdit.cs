@@ -93,9 +93,23 @@ namespace seven
                 error = true;
             }
 
+            if (textBox2.TextLength > 10)
+            {
+                errorProvider1.SetError(textBox2, "10文字以内で入力してください");
+                error = true;
+               
+
+            }
+
             if (String.IsNullOrEmpty(textBox3.Text))
             {
                 errorProvider1.SetError(textBox3, "必ず入力してください");
+                error = true;
+            }
+
+            if (textBox3.TextLength > 30)
+            {
+                errorProvider1.SetError(textBox3, "30文字以内で入力してください");
                 error = true;
             }
 
@@ -105,9 +119,21 @@ namespace seven
                 error = true;
             }
 
+            if (textBox4.TextLength > 13)
+            {
+                errorProvider1.SetError(textBox4, "13文字以内で入力してください");
+                error = true;
+            }
+
             if (String.IsNullOrEmpty(textBox5.Text))
             {
                 errorProvider1.SetError(textBox5, "必ず入力してください");
+                error = true;
+            }
+
+            if (textBox5.TextLength > 40)
+            {
+                errorProvider1.SetError(textBox5, "40文字以内で入力してください");
                 error = true;
             }
 
@@ -116,15 +142,21 @@ namespace seven
                 return;
             }
 
-            if (String.IsNullOrEmpty(textBox1.Text))
+            if (String.IsNullOrEmpty(textBox1.Text))　　//新規登録
             {
                 InsertCusInfo();
+
+                DialogResult dialogResult =
+              MessageBox.Show("選択したデータを登録しますか？", "確認",
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
             }
 
-            else
+            else　　　　　//更新
             {
-                //更新モードならUPDATE処理
+                
                 UpdateCusInfo();
+
                 DialogResult dialogResult =
                MessageBox.Show("選択したデータを更新しますか？", "確認",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
