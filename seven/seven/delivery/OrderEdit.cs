@@ -133,7 +133,7 @@ namespace seven
             }
             if (dateTimePicker1.Value < DateTime.Now)
             {
-                errorProvider1.SetError(dateTimePicker1, "明日以降を登録してください");
+                errorProvider1.SetError(dateTimePicker2, "明日以降を登録してください");
                 error = false;
             }
             if (checkBox1.Checked == false)
