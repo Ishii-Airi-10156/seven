@@ -89,7 +89,7 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox2.Text))
             {
-                errorProvider1.SetError(textBox2, "必ず入力してください");
+                errorProvider1.SetError(textBox2, "名前を入力してください");
                 error = true;
             }
 
@@ -103,7 +103,7 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox3.Text))
             {
-                errorProvider1.SetError(textBox3, "必ず入力してください");
+                errorProvider1.SetError(textBox3, "住所を入力してください");
                 error = true;
             }
 
@@ -115,7 +115,7 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox4.Text))
             {
-                errorProvider1.SetError(textBox4, "必ず入力してください");
+                errorProvider1.SetError(textBox4, "電話番号を入力してください");
                 error = true;
             }
 
@@ -127,7 +127,7 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox5.Text))
             {
-                errorProvider1.SetError(textBox5, "必ず入力してください");
+                errorProvider1.SetError(textBox5, "メールアドレスを入力してください");
                 error = true;
             }
 
@@ -147,7 +147,7 @@ namespace seven
                 InsertCusInfo();
 
                 DialogResult dialogResult =
-              MessageBox.Show("選択したデータを登録しますか？", "確認",
+              MessageBox.Show("データを登録しますか？", "確認",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
             }
@@ -158,7 +158,7 @@ namespace seven
                 UpdateCusInfo();
 
                 DialogResult dialogResult =
-               MessageBox.Show("選択したデータを更新しますか？", "確認",
+               MessageBox.Show("データを更新しますか？", "確認",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
                 if (dialogResult == DialogResult.No)

@@ -38,7 +38,7 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox1.Text))
             {
-                errorProvider1.SetError(textBox1, "必ず入力してください");
+                errorProvider1.SetError(textBox1, "IDを入力してください");
                 textBox1.Focus();
                 error = true;
 
@@ -104,7 +104,7 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox2.Text))
             {
-                errorProvider1.SetError(textBox2, "必ず入力してください");
+                errorProvider1.SetError(textBox2, "パスワードを入力してください");
                 textBox2.Focus();
                 error = true;
             }
