@@ -87,54 +87,64 @@ namespace seven
             errorProvider1.Clear();
             bool error = false;
 
-            if (String.IsNullOrEmpty(textBox2.Text))
-            {
-                errorProvider1.SetError(textBox2, "必ず入力してください");
-                error = true;
-            }
-
-            if (textBox2.TextLength > 10)
-            {
-                errorProvider1.SetError(textBox2, "10文字以内で入力してください");
-                error = true;
-               
-
-            }
-
-            if (String.IsNullOrEmpty(textBox3.Text))
-            {
-                errorProvider1.SetError(textBox3, "必ず入力してください");
-                error = true;
-            }
-
-            if (textBox3.TextLength > 30)
-            {
-                errorProvider1.SetError(textBox3, "30文字以内で入力してください");
-                error = true;
-            }
-
-            if (String.IsNullOrEmpty(textBox4.Text))
-            {
-                errorProvider1.SetError(textBox4, "必ず入力してください");
-                error = true;
-            }
-
-            if (textBox4.TextLength > 13)
-            {
-                errorProvider1.SetError(textBox4, "13文字以内で入力してください");
-                error = true;
-            }
-
             if (String.IsNullOrEmpty(textBox5.Text))
             {
-                errorProvider1.SetError(textBox5, "必ず入力してください");
+                errorProvider1.SetError(textBox5, "メールアドレスを入力してください");
+                textBox5.Focus();
                 error = true;
             }
 
             if (textBox5.TextLength > 40)
             {
                 errorProvider1.SetError(textBox5, "40文字以内で入力してください");
+                textBox5.Focus();
                 error = true;
+            }
+
+            if (String.IsNullOrEmpty(textBox4.Text))
+            {
+                errorProvider1.SetError(textBox4, "電話番号を入力してください");
+                textBox4.Focus();
+                error = true;
+            }
+
+            if (textBox4.TextLength > 13)
+            {
+                errorProvider1.SetError(textBox4, "13文字以内で入力してください");
+                textBox4.Focus();
+                error = true;
+            }
+
+            if (String.IsNullOrEmpty(textBox3.Text))
+            {
+                errorProvider1.SetError(textBox3, "住所を入力してください");
+                textBox3.Focus();
+                error = true;
+            }
+
+            if (textBox3.TextLength > 30)
+            {
+                errorProvider1.SetError(textBox3, "30文字以内で入力してください");
+                textBox3.Focus();
+                error = true;
+            }
+
+           
+
+            if (String.IsNullOrEmpty(textBox2.Text))
+            {
+                errorProvider1.SetError(textBox2, "名前を入力してください");
+                textBox2.Focus();
+                error = true;
+            }
+
+            if (textBox2.TextLength > 10)
+            {
+                errorProvider1.SetError(textBox2, "10文字以内で入力してください");
+                textBox2.Focus();
+                error = true;
+
+
             }
 
             if (error)
@@ -147,7 +157,7 @@ namespace seven
                 InsertCusInfo();
 
                 DialogResult dialogResult =
-              MessageBox.Show("選択したデータを登録しますか？", "確認",
+              MessageBox.Show("データを登録しますか？", "確認",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
             }
@@ -158,7 +168,7 @@ namespace seven
                 UpdateCusInfo();
 
                 DialogResult dialogResult =
-               MessageBox.Show("選択したデータを更新しますか？", "確認",
+               MessageBox.Show("データを更新しますか？", "確認",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
                 if (dialogResult == DialogResult.No)

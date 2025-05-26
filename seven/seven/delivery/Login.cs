@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -37,43 +38,36 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox1.Text))
             {
-                errorProvider1.SetError(textBox1, "必ず入力してください");
+                errorProvider1.SetError(textBox1, "IDを入力してください");
                 textBox1.Focus();
                 error = true;
 
             }
             else
             {
-                if (!int.TryParse(textBox1.Text, out int num) )
+                if (!int.TryParse(textBox1.Text, out int num))
                 {
-                    errorProvider1.SetError(textBox1, "数字で入力してください");
+                    errorProvider1.SetError(textBox1, "IDが違います");
                     textBox1.Focus();
                     error = true;
-                    
+
                 }
-                if(error ==false && num >=1000 || num<= -1)
+                if (textBox1.Text.Length >= 4)
                 {
                     errorProvider1.SetError(textBox1, "IDが違います");
                     textBox1.Focus();
                     error = true;
                     
                 }
-
-                if (String.IsNullOrEmpty(textBox2.Text))
+               
+                if (error == false && num >= 1000 || num <= -1)
                 {
-                    errorProvider1.SetError(textBox2, "必ず入力してください");
-                    textBox2.Focus();
+                    errorProvider1.SetError(textBox1, "IDが違います");
+                    textBox1.Focus();
                     error = true;
 
                 }
-
-                if (textBox2.Text.Length <= 6 || textBox2.Text.Length >= 16)
-                {
-                    errorProvider1.SetError(textBox2, "7文字以上15文字以内で入力してください");
-                    textBox2.Focus();
-                    error = true;
-                }
-                else if(error == false && num <= 1000 || num > 0)
+                else if (error == false && num <= 1000 || num > 0)
                 {
                     try
                     {
@@ -82,7 +76,6 @@ namespace seven
                         connection.Open();
 
                         string sql = " select count(emp_id) from employee where emp_id = @p1 ";
-
 
                         SqlCommand command = new SqlCommand();
                         command.Connection = connection;
@@ -96,8 +89,7 @@ namespace seven
                             textBox1.Focus();
                             error = true;
                         }
-                        connection.Close();
-
+                    connection.Close();
                     }
                     catch (SqlException sqlexc)
                     {
@@ -110,9 +102,22 @@ namespace seven
                 }
             }
 
-           
+            if (String.IsNullOrEmpty(textBox2.Text))
+            {
+                errorProvider1.SetError(textBox2, "パスワードを入力してください");
+                textBox2.Focus();
+                error = true;
+            }
+            else
+            {
+                if (textBox2.Text.Length <= 6 || textBox2.Text.Length >= 16)
+                {
+                    errorProvider1.SetError(textBox2, "7文字以上15文字以内で入力してください");
+                    textBox2.Focus();
+                    error = true;
+                }
+            }
 
-          
             if (error)
             {
                 return;
@@ -158,11 +163,7 @@ namespace seven
                 }
                 
             }
-            
-            
-            
-
-           
+                                              
             
             this.Hide();
             Menu menu = new Menu();

@@ -142,7 +142,7 @@ namespace seven
 
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("編集する行を選択してください");
+                MessageBox.Show("編集したい行を選択してください");
                 return;
             }
 
@@ -166,7 +166,7 @@ namespace seven
                     {
                         row.Selected = true;
                     }
-                }
+                }         
             }
         }
         private void button3_Click(object sender, EventArgs e)
@@ -187,7 +187,7 @@ namespace seven
 
         private void button5_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -196,14 +196,14 @@ namespace seven
 
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("削除する行を選択してください");
+                MessageBox.Show("削除したい行を選択してください");
                 return;
             }
 
             else
             {
                 DialogResult dialogResult =
-                    MessageBox.Show("選択したデータを削除しますか？", "確認",
+                    MessageBox.Show("データを削除しますか？", "確認",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
                 if (dialogResult == DialogResult.No)
@@ -232,7 +232,7 @@ namespace seven
 
                     ViewCustomerList();
 
-                    MessageBox.Show("削除しました。");
+                    MessageBox.Show("ID：" + customerId +"を削除しました。");
                 }
                 catch (SqlException sqlexc)
                 {
@@ -243,6 +243,11 @@ namespace seven
                     MessageBox.Show(exc.Message);
                 }
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ViewCustomerList();
         }
     }
 }

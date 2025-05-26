@@ -31,6 +31,9 @@ namespace seven
             textBox5.Text = no.ToString();
             textBox5.ReadOnly = true;
             Read();
+            label2.Text = "車両情報編集";
+            groupBox1.Text = "車両編集";
+            button1.Text = "編集";
         }
 
         private void CarEdit_Load(object sender, EventArgs e)
@@ -94,13 +97,13 @@ namespace seven
                 }
                 else if (Convert.ToInt32(textBox6.Text) <= 1)
                 {
-                    errorProvider1.SetError(textBox6, "積載量は1以上にしてください");
+                    errorProvider1.SetError(textBox6, "積載量は1以上を入力してください");
                     textBox6.Clear();
                     return;
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show("本当に追加しますか?", "追加",
+                    DialogResult result = MessageBox.Show("データを追加しますか?", "確認",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     if (result == DialogResult.No)
                     {
@@ -127,19 +130,19 @@ namespace seven
                 }
                 else if (Convert.ToInt32(textBox6.Text) >= 250)
                 {
-                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    errorProvider1.SetError(textBox6, "規定値を超えています(規定値150)");
                     textBox6.Clear();
                     return;
                 }
                 else if (Convert.ToInt32(textBox6.Text) <= 1)
                 {
-                    errorProvider1.SetError(textBox6, "積載量は1以上にしてください");
+                    errorProvider1.SetError(textBox6, "積載量は1以上を入力してください");
                     textBox6.Clear();
                     return;
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show("本当に編集しますか?", "編集",
+                    DialogResult result = MessageBox.Show("データを編集しますか?", "確認",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     if (result == DialogResult.No)
                     {

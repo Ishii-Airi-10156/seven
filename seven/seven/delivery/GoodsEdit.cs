@@ -13,14 +13,17 @@ namespace seven.delivery
         public GoodsEdit()
         {
             InitializeComponent();
+
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
         }
-        public GoodsEdit(int goodsId,string goodsName,int price,int categoryNo)
+        public GoodsEdit(int goodsId,string goodsName,int price,int bb)
         {
             InitializeComponent();
             textBox1.Text = goodsId.ToString();
             textBox2.Text = goodsName.ToString();
             textBox3.Text = price.ToString();
-            textBox4.Text = categoryNo.ToString();
+            comboBox1.SelectedIndex=bb;
         }
 
 
@@ -31,7 +34,7 @@ namespace seven.delivery
 
         private void GoodsEdit_Load(object sender, EventArgs e)
         {
-            ActiveControl = textBox1;
+            ActiveControl = textBox2;
         }
 
 
@@ -52,16 +55,12 @@ namespace seven.delivery
                 error = true;
             }
 
-            if (!int.TryParse(textBox4.Text, out int categoryNo))
+            /*if (!int.TryParse(comboBox1.Text, out int categoryNo))
             {
-                errorProvider1.SetError(textBox4, "カテゴリーNoを入力してください");
+                errorProvider1.SetError(comboBox1, "カテゴリー名を選択してください");
                 error = true;
-            }
-            if(!int.TryParse(textBox4.Text, out int sales_id))
-            {
-                errorProvider1.SetError(textBox1, "商品IDを入力してください");
-                error = true;
-            }
+            }*/
+            
             if (error)
             {
                 return;
@@ -70,23 +69,46 @@ namespace seven.delivery
 
             if (String.IsNullOrEmpty(textBox1.Text))
             {
-                InsertGoods(textBox2.Text, price, categoryNo);
-                
+                InsertGoods();
+
+                DialogResult result = MessageBox.Show("データを登録しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
             }
             else if (int.TryParse(textBox1.Text, out int goodsId))
             {
-                UpdateGoods(goodsId, textBox2.Text, price, categoryNo);
-
+                UpdateGoods();
+                DialogResult result=MessageBox.Show("データを編集しますか？","確認",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             }
 
             this.Close();
         }
 
-        private void InsertGoods(string name, int price, int categoryNo)
+        private void InsertGoods()
         {
             try
             {
-                string sql = "INSERT INTO sales (sales_name, price, category_no)  "+" VALUES (@p1, @p2, @p3) ";
+                int aa=comboBox1.SelectedIndex;
+                int bb;
+                if (aa == 0)
+                {
+                    bb = 11;
+                }
+                else if (aa == 1)
+                {
+                    bb = 12;
+                }
+                else if(aa == 2)
+                {
+                    bb = 21;
+                }
+                else
+                {
+                    bb =22;
+                }
+
+           
+                string sql = "INSERT INTO sales(sales_name,category_no,category_name,price) " + " VALUES (@p1, @p2, @p3,@p4) ";
 
                 SqlConnection connection = new SqlConnection();
                 connection.ConnectionString = sqlConnctionString;
@@ -98,8 +120,9 @@ namespace seven.delivery
 
 
                 command.Parameters.Add("@p1", SqlDbType.NVarChar).Value = textBox2.Text;
-                command.Parameters.Add("@p2", SqlDbType.Int).Value = int.Parse(textBox3.Text);
-                command.Parameters.Add("@p3", SqlDbType.Int).Value = int.Parse(textBox4.Text);
+                command.Parameters.Add("@p4", SqlDbType.Int).Value = int.Parse(textBox3.Text);
+                command.Parameters.Add("@p2",SqlDbType.Int).Value = bb;
+                command.Parameters.Add("@p3", SqlDbType.NVarChar).Value = comboBox1.Text;
 
                 int result=command.ExecuteNonQuery();
             }
@@ -113,10 +136,29 @@ namespace seven.delivery
             }
         }
 
-        private void UpdateGoods(int id, string name, int price, int categoryNo)
+        private void UpdateGoods()
         {
             try
             {
+                int aa = comboBox1.SelectedIndex;
+                int bb;
+                if (aa == 0)
+                {
+                    bb = 11;
+                }
+                else if (aa == 1)
+                {
+                    bb = 12;
+                }
+                else if (aa == 2)
+                {
+                    bb = 21;
+                }
+                else
+                {
+                    bb = 22;
+                }
+
                 string sql = "update sales set sales_name=@p1, price=@p2, category_no=@p3 where sales_id=@p4 ";
 
                 SqlConnection connection = new SqlConnection();
@@ -135,7 +177,7 @@ namespace seven.delivery
 
                 command.Parameters["@p1"].Value = textBox2.Text;
                 command.Parameters["@p2"].Value = int.Parse(textBox3.Text);
-                command.Parameters["@p3"].Value = int.Parse(textBox4.Text);
+                command.Parameters["@p3"].Value = bb;
                 command.Parameters["@p4"].Value = int.Parse(textBox1.Text);
 
                 int result = command.ExecuteNonQuery();
