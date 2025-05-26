@@ -23,6 +23,8 @@ namespace seven
         public OrderEdit()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
             CustomerRead();
             SalesRead();
             EmployeeRead();

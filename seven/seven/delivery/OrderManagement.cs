@@ -19,6 +19,8 @@ namespace seven
         public OrderManagement()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
             search();
         }
         private void search()
