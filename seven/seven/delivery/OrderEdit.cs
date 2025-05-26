@@ -17,28 +17,36 @@ namespace seven
     {
         private readonly string sqlConnectionString =
              ConfigurationManager.ConnectionStrings["delivery_system"].ConnectionString;
+        List<int> cus = new List<int>();
+        List<int> sal = new List<int>();
+        List<int> emp = new List<int>();
         public OrderEdit()
         {
             InitializeComponent();
             CustomerRead();
             SalesRead();
             EmployeeRead();
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         public void CustomerRead()
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT customer_id,customer_name FROM customer ");
             SqlConnection con = new SqlConnection();
-                con.ConnectionString = sqlConnectionString;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = sql.ToString();
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    comboBox1.Items.Add($"{reader["customer_id"]} { reader["customer_name"]}");
-                }
+            con.ConnectionString = sqlConnectionString;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = sql.ToString();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                comboBox1.Items.Add(reader["customer_name"]);
+                cus.Add(Convert.ToInt32(reader["customer_id"]));
+                
+            }
         }
         public void SalesRead()
         {
@@ -53,7 +61,8 @@ namespace seven
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                comboBox2.Items.Add($"{reader["sales_id"]} {reader["sales_name"]}");
+                comboBox2.Items.Add(reader["sales_name"]);
+                sal.Add(Convert.ToInt32(reader["sales_id"]));
             }
         }
         public void EmployeeRead()
@@ -69,14 +78,23 @@ namespace seven
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                comboBox3.Items.Add($"{reader["emp_id"]} {reader["emp_name"]}");
+                comboBox3.Items.Add(reader["emp_name"]);
+                emp.Add(Convert.ToInt32(reader["emp_id"]));
             }
         }
 
         public void Insert()
         {
+            int cusidx=comboBox1.SelectedIndex;
+            int salidx=comboBox2.SelectedIndex;
+            int empidx=comboBox3.SelectedIndex;
+            int n = 0;
+            if(checkBox1.Checked)
+            {
+                n = 1;
+            }
             string sql = "INSERT INTO order_item(customer_id,sales_id,order_date,emp_id,okihai,okibasho,delivered,cancel)" +
-               "VALUES('" + comboBox1 + "'," + comboBox2+ ","+ comboBox1+" )";
+               "VALUES(" + cus[cusidx] + "," + sal[salidx] + ",'" + dateTimePicker1.Value + "',"+ emp[empidx] + "," + n + ",'" + textBox4.Text + "'," + 0 + "," + 0 + ")";
             SqlConnection con = new SqlConnection();
             con.ConnectionString = sqlConnectionString;
             con.Open();
@@ -85,6 +103,74 @@ namespace seven
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
             con.Close();
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool error = true;
+            //errorProvider1.Clear();
+            //errorProvider2.Clear();
+            //errorProvider3.Clear();
+            //errorProvider4.Clear();
+            //errorProvider5.Clear();
+
+            if (String.IsNullOrEmpty(comboBox1.Text))
+            {
+                errorProvider1.SetError(comboBox1, "選択してください");
+                error = false;
+            }
+            if (String.IsNullOrEmpty(comboBox2.Text))
+            {
+                errorProvider1.SetError(comboBox2, "選択してください");
+                error = false;
+
+            }
+            if (String.IsNullOrEmpty(comboBox3.Text))
+            {
+                errorProvider1.SetError(comboBox3, "選択してください");
+                error = false;
+            }
+            if (dateTimePicker1.Value < DateTime.Now)
+            {
+                errorProvider1.SetError(dateTimePicker1, "明日以降を登録してください");
+                error = false;
+            }
+            if (checkBox1.Checked == false)
+            {
+                if (String.IsNullOrEmpty(textBox4.Text))
+                {
+                    errorProvider1.SetError(textBox4, "置き配がしないになっています");
+                    error = false;
+                    textBox4.Clear();
+                    return;
+                }
+            }
+            else if (checkBox1.Checked == true)
+            {
+                if (textBox4 == null)
+                {
+                    errorProvider1.SetError(textBox4, "配達場所を入力してください");
+                    error = false;
+                    return;
+                }
+                else if (!int.TryParse(textBox4.Text, out int n2))
+                {
+                    errorProvider1.SetError(textBox4, "文字でお願いします");
+                    textBox4.Clear();
+                    error = false;
+                    return ;
+                }
+            }
+            if(error)
+            {
+                Insert();
+            }
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
