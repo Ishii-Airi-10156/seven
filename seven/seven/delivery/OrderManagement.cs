@@ -321,7 +321,7 @@ namespace seven
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("本当にキャンセルしてもよろしいですか?", "キャンセル",
+            DialogResult result = MessageBox.Show("キャンセルしますか?", "確認",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result == DialogResult.No)
             {

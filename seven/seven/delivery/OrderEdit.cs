@@ -114,18 +114,18 @@ namespace seven
             errorProvider1.Clear();
             if (String.IsNullOrEmpty(comboBox1.Text))
             {
-                errorProvider1.SetError(comboBox1, "選択してください");
+                errorProvider1.SetError(comboBox1, "顧客名を選択してください");
                 error = false;
             }
             if (String.IsNullOrEmpty(comboBox2.Text))
             {
-                errorProvider1.SetError(comboBox2, "選択してください");
+                errorProvider1.SetError(comboBox2, "商品名を選択してください");
                 error = false;
 
             }
             if (String.IsNullOrEmpty(comboBox3.Text))
             {
-                errorProvider1.SetError(comboBox3, "選択してください");
+                errorProvider1.SetError(comboBox3, "配達員を選択してください");
                 error = false;
             }
             if (dateTimePicker1.Value < DateTime.Now)
@@ -161,7 +161,7 @@ namespace seven
             }
             if(error)
             {
-                DialogResult result = MessageBox.Show("本当に追加してもよろしいですか?", "追加",
+                DialogResult result = MessageBox.Show("データを登録しますか?", "確認",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (result == DialogResult.No)
                 {
