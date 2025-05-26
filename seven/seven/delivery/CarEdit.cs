@@ -34,6 +34,7 @@ namespace seven
             label2.Text = "車両情報編集";
             groupBox1.Text = "車両編集";
             button1.Text = "編集";
+            textBox6.Focus();
         }
 
         private void CarEdit_Load(object sender, EventArgs e)
