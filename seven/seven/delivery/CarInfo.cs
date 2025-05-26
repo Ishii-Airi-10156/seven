@@ -96,7 +96,7 @@ namespace seven
             }
             else
             {
-                MessageBox.Show("a");
+                MessageBox.Show("削除したい行を選択してください");
             }
             
         }
@@ -105,7 +105,7 @@ namespace seven
         {
             if(dataGridView1.CurrentRow!=null)
             {
-                DialogResult result = MessageBox.Show("本当に削除してもよろしいですか?", "削除",
+                DialogResult result = MessageBox.Show("データを削除しますか?", "確認",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.Yes)
                 {
@@ -118,7 +118,7 @@ namespace seven
             }
             else
             {
-                MessageBox.Show("a");
+                MessageBox.Show("編集したい行を選択してください");
             }
         }
         private void delete()
