@@ -21,6 +21,9 @@ namespace seven
             InitializeComponent();
             label7.Visible = false;
             textBox5.Visible = false;
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+            textBox6.Focus();
         }
         public CarEdit(int no)
         {
@@ -83,9 +86,9 @@ namespace seven
                     textBox6.Clear();
                     return;
                 }
-                else if (Convert.ToInt32(textBox6.Text) >= 250)
+                else if (Convert.ToInt32(textBox6.Text) >= 150)
                 {
-                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    errorProvider1.SetError(textBox6, "規定値を超えています(規定値150)");
                     textBox6.Clear();
                     return;
                 }
@@ -97,6 +100,12 @@ namespace seven
                 }
                 else
                 {
+                    DialogResult result = MessageBox.Show("本当に追加しますか?", "追加",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                     Insert(n);
                 }
                 
@@ -130,6 +139,12 @@ namespace seven
                 }
                 else
                 {
+                    DialogResult result = MessageBox.Show("本当に編集しますか?", "編集",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                     Update(n);
                 }
                 
