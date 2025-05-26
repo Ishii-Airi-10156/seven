@@ -372,6 +372,7 @@ namespace seven
         {
             OrderEdit form= new OrderEdit();
             form.ShowDialog();
+            search();
         }
     }
 }
