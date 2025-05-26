@@ -71,14 +71,14 @@ namespace seven.delivery
             {
                 InsertGoods();
 
+                DialogResult result = MessageBox.Show("データを登録しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 
-                
             }
             else if (int.TryParse(textBox1.Text, out int goodsId))
             {
                 UpdateGoods();
-                DialogResult result=MessageBox.Show("本当に確定しますか？","確定",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult result=MessageBox.Show("データを編集しますか？","確認",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             }
 
             this.Close();

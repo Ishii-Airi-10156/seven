@@ -100,10 +100,19 @@ namespace seven.delivery
 
         private void button3_Click(object sender, EventArgs e)
         {
-                int goodsId = (int)dataGridView1.CurrentRow.Cells[0].Value;
-                string goodsName=(string)dataGridView1.CurrentRow.Cells[1].Value;
-                int price=(int)dataGridView1.CurrentRow.Cells[2].Value;
-                string categoryName=(string)dataGridView1.CurrentRow.Cells[4].Value;
+            /*if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("編集したい行を選択してください");
+                return;
+            }
+            else
+            {
+
+            }*/
+            int goodsId = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            string goodsName=(string)dataGridView1.CurrentRow.Cells[1].Value;
+            int price=(int)dataGridView1.CurrentRow.Cells[2].Value;
+            string categoryName=(string)dataGridView1.CurrentRow.Cells[4].Value;
 
             int bb;
             if (categoryName == "要冷凍")
