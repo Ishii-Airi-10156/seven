@@ -79,31 +79,46 @@ namespace seven
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int truckNo = (int)dataGridView1.CurrentRow.Cells[0].Value;
-            CarEdit form = new CarEdit(truckNo);
-            form.ShowDialog();
-            search();
-            foreach(DataGridViewRow dt in dataGridView1.Rows)
+            if (dataGridView1.CurrentRow != null)
             {
-                if ((int)dt.Cells[0].Value==truckNo)
+                int truckNo = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                CarEdit form = new CarEdit(truckNo);
+                form.ShowDialog();
+                search();
+                foreach (DataGridViewRow dt in dataGridView1.Rows)
                 {
-                    dt.Selected = true;
+                    if ((int)dt.Cells[0].Value == truckNo)
+                    {
+                        dt.Selected = true;
+                    }
+
                 }
-                
             }
+            else
+            {
+                MessageBox.Show("a");
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DialogResult result =MessageBox.Show("本当に削除してもよろしいですか?", "削除",
+            if(dataGridView1.CurrentRow!=null)
+            {
+                DialogResult result = MessageBox.Show("本当に削除してもよろしいですか?", "削除",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (result == DialogResult.Yes)
-            {
-                delete();
+                if (result == DialogResult.Yes)
+                {
+                    delete();
+                }
+                else if (result == DialogResult.No)
+                {
+                    return;
+                }
             }
-            else if(result == DialogResult.No) 
+            else
             {
-                return;
+                MessageBox.Show("a");
             }
         }
         private void delete()
