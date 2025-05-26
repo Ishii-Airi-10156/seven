@@ -109,12 +109,7 @@ namespace seven
         private void button1_Click(object sender, EventArgs e)
         {
             bool error = true;
-            //errorProvider1.Clear();
-            //errorProvider2.Clear();
-            //errorProvider3.Clear();
-            //errorProvider4.Clear();
-            //errorProvider5.Clear();
-
+            errorProvider1.Clear();
             if (String.IsNullOrEmpty(comboBox1.Text))
             {
                 errorProvider1.SetError(comboBox1, "選択してください");
@@ -164,6 +159,12 @@ namespace seven
             }
             if(error)
             {
+                DialogResult result = MessageBox.Show("本当に追加してもよろしいですか?", "追加",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (result == DialogResult.No)
+                {
+                    return ;
+                }
                 Insert();
             }
             
