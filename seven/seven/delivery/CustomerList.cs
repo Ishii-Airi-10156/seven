@@ -187,7 +187,7 @@ namespace seven
 
         private void button5_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -243,6 +243,11 @@ namespace seven
                     MessageBox.Show(exc.Message);
                 }
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ViewCustomerList();
         }
     }
 }

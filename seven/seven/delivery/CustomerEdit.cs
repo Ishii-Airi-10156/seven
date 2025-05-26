@@ -168,7 +168,7 @@ namespace seven
                 this.DialogResult = dialogResult;
             }
 
-            this.Close();
+            this.Dispose();
         }
         private void InsertCusInfo()
         {
@@ -209,7 +209,7 @@ namespace seven
            
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
     }
 }
