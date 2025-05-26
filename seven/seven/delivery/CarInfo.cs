@@ -96,7 +96,7 @@ namespace seven
             }
             else
             {
-                MessageBox.Show("削除したい行を選択してください");
+                MessageBox.Show("編集したい行を選択してください");
             }
             
         }
@@ -118,7 +118,7 @@ namespace seven
             }
             else
             {
-                MessageBox.Show("編集したい行を選択してください");
+                MessageBox.Show("削除したい行を選択してください");
             }
         }
         private void delete()
