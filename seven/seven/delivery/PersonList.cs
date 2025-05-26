@@ -68,7 +68,7 @@ namespace seven.delivery
         {
             if(dataGridView1.CurrentRow == null)
             {
-                MessageBox.Show("編集したい列を選択してください");
+                MessageBox.Show("編集したい行を選択してください");
                 return;
             }
             int e_num = (int)dataGridView1.CurrentRow.Cells[0].Value;
@@ -110,13 +110,13 @@ namespace seven.delivery
         {
             if (dataGridView1.CurrentRow == null)
             {
-                MessageBox.Show("削除したい列を選択してください");
+                MessageBox.Show("削除したい行を選択してください");
                 return;
             }
             try
             {
                 DialogResult dialogResult =
-                    MessageBox.Show("選択したデータを削除しますか？", "確認",
+                    MessageBox.Show("データを削除しますか？", "確認",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.No)
                 {
