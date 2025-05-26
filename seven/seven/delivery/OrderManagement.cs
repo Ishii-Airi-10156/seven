@@ -325,7 +325,15 @@ namespace seven
             {
                 return;
             }
-            cancel();
+            if (dataGridView1.CurrentRow != null)
+            {
+                cancel();
+            }
+            else
+            {
+                MessageBox.Show("");
+                return;
+            }
             if (radioButton1.Checked)
             {
                 Narrowdown1();
