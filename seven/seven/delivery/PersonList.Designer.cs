@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +61,40 @@
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(608, 231);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "配達員ID";
+            this.Column1.Name = "Column1";
+            // 
+            // Column6
+            // 
+            this.Column6.FalseValue = "0";
+            this.Column6.HeaderText = "稼働状況";
+            this.Column6.Name = "Column6";
+            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column6.TrueValue = "1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "配達員名";
+            this.Column2.Name = "Column2";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "担当エリア";
+            this.Column5.Name = "Column5";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "トラックナンバー";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "配達完了度";
+            this.Column4.Name = "Column4";
             // 
             // label1
             // 
@@ -110,39 +144,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "メニューに戻る";
             this.button4.UseVisualStyleBackColor = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "配達員ID";
-            this.Column1.Name = "Column1";
-            // 
-            // Column6
-            // 
-            this.Column6.FalseValue = "0";
-            this.Column6.HeaderText = "稼働状況";
-            this.Column6.Name = "Column6";
-            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column6.TrueValue = "1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "配達員名";
-            this.Column2.Name = "Column2";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "担当エリア";
-            this.Column5.Name = "Column5";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "トラックナンバー";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "配達完了度";
-            this.Column4.Name = "Column4";
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // PersonList
             // 

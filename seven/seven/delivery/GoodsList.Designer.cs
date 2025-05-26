@@ -88,6 +88,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "検索";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -97,6 +98,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "新規追加";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -106,6 +108,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "編集";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -141,6 +144,7 @@
             this.button4.TabIndex = 7;
             this.button4.Text = "メニューに戻る";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // GoodsList
             // 
@@ -157,6 +161,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "GoodsList";
             this.Text = "GoodsList";
+            this.Load += new System.EventHandler(this.GoodsList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);

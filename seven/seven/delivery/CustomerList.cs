@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace seven
 {
@@ -32,53 +33,19 @@ namespace seven
 
         private void ViewCustomerList()
         {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = sqlConnectionString;
-            connection.Open();
-
-            dataGridView1.Rows.Clear();
-
-            string sql = "SELECT * FROM customer ";
-
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            command.CommandText = sql.ToString();
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                dataGridView1.Rows.Add();
-                int idx = dataGridView1.Rows.Count - 1;
 
-                dataGridView1.Rows[idx].Cells[0].Value = reader["customer_id"];
-                dataGridView1.Rows[idx].Cells[1].Value = reader["email_address"];
-                dataGridView1.Rows[idx].Cells[2].Value = reader["customer_name"];
-                dataGridView1.Rows[idx].Cells[3].Value = reader["address"];
-                dataGridView1.Rows[idx].Cells[4].Value = reader["tele_number"];
-            }
+                dataGridView1.Rows.Clear();
+                SqlConnection connection = new SqlConnection();
+                connection.ConnectionString = sqlConnectionString;
+                connection.Open();
 
-            reader.Close();
-            connection.Close();
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
-            dataGridView1.Rows.Clear();
+                string sql = "SELECT * FROM customer ";
 
-            StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT * FROM customer ");
-
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = sqlConnectionString;
-            connection.Open();
-
-            if (!String.IsNullOrEmpty(textBox1.Text))
-            {
-                sql.Append("WHERE customer_name LIKE '%" + textBox1.Text + "%' ");
-
-                               SqlCommand command = new SqlCommand();
+                SqlCommand command = new SqlCommand();
                 command.Connection = connection;
                 command.CommandText = sql.ToString();
 
@@ -94,23 +61,85 @@ namespace seven
                     dataGridView1.Rows[idx].Cells[2].Value = reader["customer_name"];
                     dataGridView1.Rows[idx].Cells[3].Value = reader["address"];
                     dataGridView1.Rows[idx].Cells[4].Value = reader["tele_number"];
-   
                 }
-                reader.Close();
-            }
 
-            else
+                reader.Close();
+                connection.Close();
+            }
+            catch (SqlException sqlexc)
+            {
+                MessageBox.Show(sqlexc.Message);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
             {
                 dataGridView1.Rows.Clear();
-            }
-           
-            connection.Close();
 
+                StringBuilder sql = new StringBuilder();
+                sql.Append("SELECT * FROM customer ");
+
+                SqlConnection connection = new SqlConnection();
+                connection.ConnectionString = sqlConnectionString;
+                connection.Open();
+
+                if (!String.IsNullOrEmpty(textBox1.Text))
+                {
+                    sql.Append("WHERE customer_name LIKE '%" + textBox1.Text + "%' ");
+
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = sql.ToString();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        dataGridView1.Rows.Add();
+                        int idx = dataGridView1.Rows.Count - 1;
+
+                        dataGridView1.Rows[idx].Cells[0].Value = reader["customer_id"];
+                        dataGridView1.Rows[idx].Cells[1].Value = reader["email_address"];
+                        dataGridView1.Rows[idx].Cells[2].Value = reader["customer_name"];
+                        dataGridView1.Rows[idx].Cells[3].Value = reader["address"];
+                        dataGridView1.Rows[idx].Cells[4].Value = reader["tele_number"];
+
+                    }
+                    reader.Close();
+                }
+
+                else
+                {
+                    dataGridView1.Rows.Clear();
+                }
+
+                connection.Close();
+            }
+            catch (SqlException sqlexc)
+            {
+                MessageBox.Show(sqlexc.Message);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CustomerEdit edit = new CustomerEdit();
+            int customerid = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            string emailaddress = (string)dataGridView1.CurrentRow.Cells[1].Value;
+            string customername = (string)dataGridView1.CurrentRow.Cells[2].Value;
+            string address = (string)dataGridView1.CurrentRow.Cells[3].Value;
+            string telenumber= (string)dataGridView1.CurrentRow.Cells[4].Value;
+
+            CustomerEdit edit = new CustomerEdit(customerid, emailaddress, customername, address, telenumber);
             edit.ShowDialog();
             edit.Dispose();
 
@@ -143,28 +172,38 @@ namespace seven
             {
                 return;
             }
+            try
+            {
 
-            int customerId = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                int customerId = (int)dataGridView1.CurrentRow.Cells[0].Value;
 
-            string sql = "DELETE customer WHERE customer_id = @p";
+                string sql = "DELETE customer WHERE customer_id = @p";
 
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = sqlConnectionString;
-            connection.Open();
+                SqlConnection connection = new SqlConnection();
+                connection.ConnectionString = sqlConnectionString;
+                connection.Open();
 
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            command.CommandText = sql.ToString();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandText = sql.ToString();
 
-            command.Parameters.Add("@p" , SqlDbType.Int).Value = customerId;
+                command.Parameters.Add("@p", SqlDbType.Int).Value = customerId;
 
-            int result = command.ExecuteNonQuery();
-            connection.Close();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
 
 
-            ViewCustomerList();
-            MessageBox.Show("削除しました。");
-
-         }
+                ViewCustomerList();
+                MessageBox.Show("削除しました。");
+            }
+            catch (SqlException sqlexc)
+            {
+                MessageBox.Show(sqlexc.Message);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
     }
 }
