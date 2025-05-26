@@ -96,7 +96,7 @@ namespace seven
                 n = 1;
             }
             string sql = "INSERT INTO order_item(customer_id,sales_id,order_date,emp_id,okihai,okibasho,delivered,cancel)" +
-               "VALUES(" + cus[cusidx] + "," + sal[salidx] + ",'" + dateTimePicker1.Value + "',"+ emp[empidx] + "," + n + ",'" + textBox4.Text + "'," + 0 + "," + 0 + ")";
+               "VALUES(" + cus[cusidx] + "," + sal[salidx] + ",'" + dateTimePicker2.Value + "',"+ emp[empidx] + "," + n + ",'" + textBox4.Text + "'," + 0 + "," + 0 + ")";
             SqlConnection con = new SqlConnection();
             con.ConnectionString = sqlConnectionString;
             con.Open();
@@ -128,14 +128,14 @@ namespace seven
                 errorProvider1.SetError(comboBox3, "配達員を選択してください");
                 error = false;
             }
-            if (dateTimePicker1.Value < DateTime.Now)
+            if (dateTimePicker2.Value < DateTime.Now)
             {
                 errorProvider1.SetError(dateTimePicker2, "明日以降を登録してください");
                 error = false;
             }
             if (checkBox1.Checked == false)
             {
-                if (String.IsNullOrEmpty(textBox4.Text))
+                if (!String.IsNullOrEmpty(textBox4.Text))
                 {
                     errorProvider1.SetError(textBox4, "置き配がしないになっています");
                     error = false;
@@ -151,7 +151,14 @@ namespace seven
                     error = false;
                     return;
                 }
-                else if (!int.TryParse(textBox4.Text, out int n2))
+                else if (String.IsNullOrEmpty(textBox4.Text))
+                {
+                    errorProvider1.SetError(textBox4, "置き配がしないになっています");
+                    error = false;
+                    textBox4.Clear();
+                    return;
+                }
+                else if (int.TryParse(textBox4.Text, out int n2))
                 {
                     errorProvider1.SetError(textBox4, "文字でお願いします");
                     textBox4.Clear();
