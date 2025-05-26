@@ -105,7 +105,7 @@ namespace seven
         {
             if(dataGridView1.CurrentRow!=null)
             {
-                DialogResult result = MessageBox.Show("本当に削除してもよろしいですか?", "削除",
+                DialogResult result = MessageBox.Show("データを削除しますか?", "確認",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.Yes)
                 {
