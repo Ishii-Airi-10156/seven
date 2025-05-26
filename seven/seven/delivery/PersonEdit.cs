@@ -176,6 +176,13 @@ namespace seven.delivery
             }
             else
             {
+                DialogResult dialogResult =
+                    MessageBox.Show("データを追加しますか？", "確認",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
                 Insert();
             }
             this.Close();
