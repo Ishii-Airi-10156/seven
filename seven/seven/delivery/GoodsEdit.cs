@@ -31,7 +31,7 @@ namespace seven.delivery
 
         private void GoodsEdit_Load(object sender, EventArgs e)
         {
-            ActiveControl = textBox1;
+            ActiveControl = textBox2;
         }
 
 
