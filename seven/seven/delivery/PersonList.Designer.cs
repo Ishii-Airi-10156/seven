@@ -58,6 +58,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 133);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -69,12 +70,14 @@
             // 
             this.Column1.HeaderText = "配達員ID";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column6
             // 
             this.Column6.FalseValue = "0";
             this.Column6.HeaderText = "稼働状況";
             this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column6.TrueValue = "1";
             // 
@@ -82,21 +85,25 @@
             // 
             this.Column2.HeaderText = "配達員名";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "担当エリア";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "トラックナンバー";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "配達完了度";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // label1
             // 

@@ -14,7 +14,7 @@ namespace seven.delivery
 {
     public partial class PersonEdit : Form
     {
-        
+        string a;
         private readonly string sqlConnectionString =
             ConfigurationManager.ConnectionStrings["delivery_system"].ConnectionString;
         
@@ -28,7 +28,7 @@ namespace seven.delivery
             InitializeComponent();
             textBox1.Text = emp_id.ToString();
             textBox2.Text = emp_name;
-            comboBox1.Text = area;
+            a = area;
             textBox3.Text = truck_no.ToString();
             numericUpDown1.Value = co;
             
@@ -89,6 +89,11 @@ namespace seven.delivery
                 c = false;
 
             }
+            if(textBox2.Text.Length > 10)
+            {
+                errorProvider1.SetError(textBox2, "10文字以内で入力してください");
+                c = false;
+            }
             if (String.IsNullOrEmpty(comboBox1.Text))
             {
                 errorProvider1.SetError(comboBox1, "エリアを選択してください");
@@ -101,12 +106,15 @@ namespace seven.delivery
                 c = false;
                 
             }
-            else if (!String.IsNullOrEmpty(textBox3.Text))
+            if (!String.IsNullOrEmpty(textBox3.Text))
             {
-                if (int.TryParse(textBox3.Text, out int num))
+                if (!int.TryParse(textBox3.Text, out int num))
                 {
-                    
+                    errorProvider1.SetError(textBox3, "数字を入力してください");
+                    c = false;
+                    return;
                 }
+                
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(sqlConnectionString))
@@ -115,11 +123,11 @@ namespace seven.delivery
                         string sql = "select count(truck_no) from truck ";
                         SqlCommand command = new SqlCommand(sql, connection);
                         int result = (int)command.ExecuteScalar();
-                        if (result < num)
+                        if (result < num || num <= 0)
                         {
                             errorProvider1.SetError(textBox3, "存在しないトラックナンバーです");
                             c = false;
-                            
+                            return;
                         }
                     }
                 }
@@ -131,31 +139,32 @@ namespace seven.delivery
                 {
                     MessageBox.Show("エラー: " + ex.Message);
                 }
-            }
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+
+                try
                 {
-                    connection.Open();
-                    string sql = "select truck_capacity from truck where truck_no = @p1";
-                    SqlCommand command = new SqlCommand(sql, connection);
-                    command.Parameters.Add("@p1", SqlDbType.Int).Value = textBox3.Text;
-                    int result = (int)command.ExecuteScalar();
-                    if (numericUpDown1.Value > result)
+                    using (SqlConnection connection = new SqlConnection(sqlConnectionString))
                     {
-                        errorProvider1.SetError(numericUpDown1, "トラックの積載量を超えています");
-                        c = false;
-                        
+                        connection.Open();
+                        string sql = "select truck_capacity from truck where truck_no = @p1";
+                        SqlCommand command = new SqlCommand(sql, connection);
+                        command.Parameters.Add("@p1", SqlDbType.Int).Value = textBox3.Text;
+                        int result = (int)command.ExecuteScalar();
+                        if (numericUpDown1.Value > result)
+                        {
+                            errorProvider1.SetError(numericUpDown1, "トラックの積載量を超えています");
+                            c = false;
+
+                        }
                     }
                 }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("データベース接続エラー: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("エラー: " + ex.Message);
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("データベース接続エラー: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("エラー: " + ex.Message);
+                }
             }
             if(c == false)
             {
@@ -178,8 +187,9 @@ namespace seven.delivery
         }
         private void Citem()
         {
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            a = comboBox1.Text;
             comboBox1.Items.Clear();
+            
             List<string> area = new List<string>()
             {
                 "足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区",
@@ -187,11 +197,26 @@ namespace seven.delivery
                 "中野区","練馬区","文京区","港区","目黒区"
             };
             comboBox1.Items.AddRange(area.ToArray());
+            comboBox1.Text = a;
         }
 
         private void comboBox1_Click(object sender, EventArgs e)
         {
             Citem();
+        }
+
+        private void PersonEdit_Load_1(object sender, EventArgs e)
+        {
+            
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            List<string> area = new List<string>()
+            {
+                "足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区",
+                "渋谷区","新宿区","杉並区","墨田区","世田谷区","台東区","中央区","千代田区","豊島区",
+                "中野区","練馬区","文京区","港区","目黒区"
+            };
+            comboBox1.Items.AddRange(area.ToArray());
+            comboBox1.Text = a;
         }
     }
 }
