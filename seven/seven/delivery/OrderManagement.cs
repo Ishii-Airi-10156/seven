@@ -390,6 +390,7 @@ namespace seven
         {
             OrderEdit form= new OrderEdit();
             form.ShowDialog();
+            radioButton4.Checked=true;
             search();
         }
     }
