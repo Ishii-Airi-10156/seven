@@ -186,6 +186,7 @@
             this.MaximumSize = new System.Drawing.Size(393, 379);
             this.Name = "PersonEdit";
             this.Text = "PersonEdit";
+            this.Load += new System.EventHandler(this.PersonEdit_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
