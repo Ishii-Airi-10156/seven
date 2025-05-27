@@ -159,7 +159,7 @@ namespace seven
                 }
                 else if (String.IsNullOrEmpty(textBox4.Text))
                 {
-                    errorProvider1.SetError(textBox4, "置き配がしないになっています");
+                    errorProvider1.SetError(textBox4, "配達場所を入力してください");
                     error = false;
                     textBox4.Clear();
                     textBox4.Focus();
@@ -175,7 +175,7 @@ namespace seven
                 }
                 else if (textBox4.Text.Length > 20)
                 {
-                    errorProvider1.SetError(textBox4, "20文字未満でお願いします");
+                    errorProvider1.SetError(textBox4, "20文字未満で入力してください");
                     textBox4.Clear();
                     textBox4.Focus();
                     error = false;
