@@ -172,6 +172,13 @@ namespace seven.delivery
             }
             if (!String.IsNullOrEmpty(textBox1.Text))
             {
+                DialogResult dialogResult =
+                    MessageBox.Show("データを編集しますか？", "確認",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
                 DateUpdate();
             }
             else

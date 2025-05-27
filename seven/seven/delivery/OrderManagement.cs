@@ -19,6 +19,8 @@ namespace seven
         public OrderManagement()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
             search();
         }
         private void search()
@@ -319,28 +321,44 @@ namespace seven
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("本当にキャンセルしてもよろしいですか?", "キャンセル",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (result == DialogResult.No)
+            if (dataGridView1.CurrentCell != null)
             {
-                return;
-            }
-            cancel();
-            if (radioButton1.Checked)
-            {
-                Narrowdown1();
-            }
-            else if (radioButton2.Checked)
-            {
-                Narrowdown2();
-            }
-            else if (radioButton3.Checked)
-            {
-                Narrowdown3();
+                DialogResult result = MessageBox.Show("キャンセルしますか?", "確認",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+                if (dataGridView1.CurrentRow != null)
+                {
+                    cancel();
+                }
+                else
+                {
+                    MessageBox.Show("");
+                    return;
+                }
+                if (radioButton1.Checked)
+                {
+                    Narrowdown1();
+                }
+                else if (radioButton2.Checked)
+                {
+                    Narrowdown2();
+                }
+                else if (radioButton3.Checked)
+                {
+                    Narrowdown3();
+                }
+                else
+                {
+                    search();
+                }
             }
             else
             {
-                search();
+                MessageBox.Show("キャンセルしたい行を選択してください");
+                return ;
             }
         }
         private void cancel()
@@ -372,6 +390,8 @@ namespace seven
         {
             OrderEdit form= new OrderEdit();
             form.ShowDialog();
+            radioButton4.Checked=true;
+            search();
         }
     }
 }

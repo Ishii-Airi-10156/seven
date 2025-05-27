@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,7 +39,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -85,6 +88,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "確定";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -100,6 +104,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(89, 85);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(137, 19);
             this.textBox1.TabIndex = 6;
             // 
@@ -127,19 +132,29 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "商品情報編集";
             // 
-            // textBox4
+            // errorProvider1
             // 
-            this.textBox4.Location = new System.Drawing.Point(89, 203);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(137, 19);
-            this.textBox4.TabIndex = 11;
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "要冷凍",
+            "冷凍不要",
+            "割れ物",
+            "割れ物でないもの"});
+            this.comboBox1.Location = new System.Drawing.Point(89, 200);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(137, 20);
+            this.comboBox1.TabIndex = 11;
             // 
             // GoodsEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 315);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -152,6 +167,8 @@
             this.Controls.Add(this.label1);
             this.Name = "GoodsEdit";
             this.Text = "GoodsEdit";
+            this.Load += new System.EventHandler(this.GoodsEdit_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,6 +186,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

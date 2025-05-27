@@ -20,6 +20,8 @@ namespace seven
         public CarInfo()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
         }
         private void search()
         {
@@ -64,30 +66,59 @@ namespace seven
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int count1 = dataGridView1.RowCount - 1;
             CarEdit form = new CarEdit();
             form.ShowDialog();
             search();
+            int count2 = dataGridView1.RowCount-1;
+            if(count1!=count2)
+            {
+                dataGridView1[0, count2].Selected = true;
+            }       
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int truckNo = (int)dataGridView1.CurrentRow.Cells[0].Value;
-            CarEdit form = new CarEdit(truckNo);
-            form.ShowDialog();
-            search();
+            if (dataGridView1.CurrentRow != null)
+            {
+                int truckNo = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                CarEdit form = new CarEdit(truckNo);
+                form.ShowDialog();
+                search();
+                foreach (DataGridViewRow dt in dataGridView1.Rows)
+                {
+                    if ((int)dt.Cells[0].Value == truckNo)
+                    {
+                        dt.Selected = true;
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("編集したい行を選択してください");
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DialogResult result =MessageBox.Show("本当に削除してもよろしいですか?", "削除",
+            if(dataGridView1.CurrentRow!=null)
+            {
+                DialogResult result = MessageBox.Show("データを削除しますか?", "確認",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (result == DialogResult.Yes)
-            {
-                delete();
+                if (result == DialogResult.Yes)
+                {
+                    delete();
+                }
+                else if (result == DialogResult.No)
+                {
+                    return;
+                }
             }
-            else if(result == DialogResult.No) 
+            else
             {
-                return;
+                MessageBox.Show("削除したい行を選択してください");
             }
         }
         private void delete()

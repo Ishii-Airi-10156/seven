@@ -21,6 +21,9 @@ namespace seven
             InitializeComponent();
             label7.Visible = false;
             textBox5.Visible = false;
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+            textBox6.Focus();
         }
         public CarEdit(int no)
         {
@@ -28,6 +31,10 @@ namespace seven
             textBox5.Text = no.ToString();
             textBox5.ReadOnly = true;
             Read();
+            label2.Text = "車両情報編集";
+            groupBox1.Text = "車両編集";
+            button1.Text = "編集";
+            textBox6.Focus();
         }
 
         private void CarEdit_Load(object sender, EventArgs e)
@@ -75,22 +82,38 @@ namespace seven
                 {
                     errorProvider1.SetError(textBox6, "積載量を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else if (!int.TryParse(textBox6.Text,out n2))
                 {
                     errorProvider1.SetError(textBox6,"数値を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
-                else if (Convert.ToInt32(textBox6.Text) >= 250)
+                else if (Convert.ToInt32(textBox6.Text) >= 150)
                 {
-                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    errorProvider1.SetError(textBox6, "規定値を超えています(規定値150)");
                     textBox6.Clear();
+                    textBox6.Focus();
+                    return;
+                }
+                else if (Convert.ToInt32(textBox6.Text) <= 1)
+                {
+                    errorProvider1.SetError(textBox6, "積載量は1以上を入力してください");
+                    textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else
                 {
+                    DialogResult result = MessageBox.Show("データを追加しますか?", "確認",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                     Insert(n);
                 }
                 
@@ -102,22 +125,38 @@ namespace seven
                 {
                     errorProvider1.SetError(textBox6, "積載量を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                  else if (!int.TryParse(textBox6.Text, out n2))
                 {
                     errorProvider1.SetError(textBox6, "数値を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else if (Convert.ToInt32(textBox6.Text) >= 250)
                 {
-                    errorProvider1.SetError(textBox6, "積載量が規定値を超えています");
+                    errorProvider1.SetError(textBox6, "規定値を超えています(規定値150)");
                     textBox6.Clear();
+                    textBox6.Focus();
+                    return;
+                }
+                else if (Convert.ToInt32(textBox6.Text) <= 1)
+                {
+                    errorProvider1.SetError(textBox6, "積載量は1以上を入力してください");
+                    textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else
                 {
+                    DialogResult result = MessageBox.Show("データを編集しますか?", "確認",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                     Update(n);
                 }
                 

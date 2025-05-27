@@ -62,7 +62,7 @@
             this.label2.Location = new System.Drawing.Point(64, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 12);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 30;
             this.label2.Text = "顧客ID：";
             // 
             // label3
@@ -114,35 +114,35 @@
             this.textBox2.Location = new System.Drawing.Point(137, 116);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(178, 19);
-            this.textBox2.TabIndex = 7;
+            this.textBox2.TabIndex = 0;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(136, 164);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(179, 19);
-            this.textBox3.TabIndex = 8;
+            this.textBox3.TabIndex = 1;
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(136, 203);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(179, 19);
-            this.textBox4.TabIndex = 9;
+            this.textBox4.TabIndex = 3;
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(136, 257);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(179, 19);
-            this.textBox5.TabIndex = 10;
+            this.textBox5.TabIndex = 4;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(38, 304);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 37);
-            this.button1.TabIndex = 11;
+            this.button1.TabIndex = 5;
             this.button1.Text = "確定";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -152,7 +152,7 @@
             this.button2.Location = new System.Drawing.Point(239, 304);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 37);
-            this.button2.TabIndex = 12;
+            this.button2.TabIndex = 6;
             this.button2.Text = "閉じる";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
