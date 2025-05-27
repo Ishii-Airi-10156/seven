@@ -17,6 +17,14 @@ namespace seven.delivery
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
         }
+
+        public GoodsEdit(string title)
+        {
+            InitializeComponent();
+            label5.Text = title;
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+        }
         public GoodsEdit(int goodsId,string goodsName,int price,int bb)
         {
             InitializeComponent();

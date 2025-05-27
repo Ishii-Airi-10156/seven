@@ -95,9 +95,9 @@ namespace seven.delivery
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GoodsEdit form = new GoodsEdit();
+            string title = "商品情報登録";
+            GoodsEdit form = new GoodsEdit(title);
             form.ShowDialog();
-
             LoadGoodsData();
         }
 
