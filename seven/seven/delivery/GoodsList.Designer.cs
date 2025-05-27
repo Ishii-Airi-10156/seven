@@ -41,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,7 +99,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(293, 58);
+            this.button1.Location = new System.Drawing.Point(406, 58);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(126, 36);
             this.button1.TabIndex = 1;
@@ -108,7 +109,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 351);
+            this.button2.Location = new System.Drawing.Point(29, 351);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(126, 36);
             this.button2.TabIndex = 2;
@@ -118,7 +119,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(167, 351);
+            this.button3.Location = new System.Drawing.Point(161, 351);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(126, 36);
             this.button3.TabIndex = 3;
@@ -147,7 +148,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(338, 351);
+            this.button4.Location = new System.Drawing.Point(425, 351);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(122, 36);
             this.button4.TabIndex = 7;
@@ -170,11 +171,22 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 8;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(293, 351);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(126, 36);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "削除";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // GoodsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 427);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
@@ -207,5 +219,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button5;
     }
 }

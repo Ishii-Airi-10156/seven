@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data;
 
 namespace seven.delivery
 {
@@ -135,6 +136,59 @@ namespace seven.delivery
                 form.ShowDialog();
 
                 LoadGoodsData();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("削除したい行を選択してください");
+                return;
+            }
+
+            else
+            {
+                DialogResult dialogResult =
+                    MessageBox.Show("データを削除しますか？", "確認",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+                try
+                {
+
+                    int customerId = (int)dataGridView1.CurrentRow.Cells[0].Value;
+
+                    string sql = "DELETE sales WHERE sales_id = @p";
+
+                    SqlConnection connection = new SqlConnection();
+                    connection.ConnectionString = sqlConnctionString;
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = sql.ToString();
+
+                    command.Parameters.Add("@p", SqlDbType.Int).Value = customerId;
+
+                    int result = command.ExecuteNonQuery();
+                    connection.Close();
+
+                    LoadGoodsData();
+
+                    MessageBox.Show("ID：" + customerId + "を削除しました。");
+                }
+                catch (SqlException sqlexc)
+                {
+                    MessageBox.Show(sqlexc.Message);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
         }
     }
 }
