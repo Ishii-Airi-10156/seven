@@ -19,6 +19,7 @@ namespace seven
         public CustomerEdit()
         {
             InitializeComponent();
+            label1.Text = "顧客情報登録";
         }
 
         public CustomerEdit(int customerid, string emailaddress, string customername, string address, string telenumber)
