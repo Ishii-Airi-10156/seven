@@ -388,10 +388,16 @@ namespace seven
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OrderEdit form= new OrderEdit();
+            int count1 = dataGridView1.RowCount - 1;
+            OrderEdit form = new OrderEdit();
             form.ShowDialog();
             search();
-            radioButton4.Checked=true;
+            int count2 = dataGridView1.RowCount - 1;
+            if (count1 != count2)
+            {
+                dataGridView1[0, count2].Selected = true;
+            }
+            radioButton4.Checked = true;
         }
     }
 }
