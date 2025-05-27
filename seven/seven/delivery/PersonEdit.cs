@@ -22,6 +22,7 @@ namespace seven.delivery
         {
             InitializeComponent();
             numericUpDown1.Enabled = false;
+            label1.Text = "従業員情報登録";
         }
         public PersonEdit(int emp_id, string emp_name, string area, int truck_no,int co)
         {
@@ -31,6 +32,7 @@ namespace seven.delivery
             a = area;
             textBox3.Text = truck_no.ToString();
             numericUpDown1.Value = Convert.ToDecimal(co);
+            label1.Text = "従業員情報編集";
             numericUpDown1.Enabled = true;
 
         }
