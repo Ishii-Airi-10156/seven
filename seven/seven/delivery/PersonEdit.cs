@@ -21,7 +21,7 @@ namespace seven.delivery
         public PersonEdit()
         {
             InitializeComponent();
-            
+            numericUpDown1.Enabled = false;
         }
         public PersonEdit(int emp_id, string emp_name, string area, int truck_no,int co)
         {
@@ -31,7 +31,7 @@ namespace seven.delivery
             a = area;
             textBox3.Text = truck_no.ToString();
             numericUpDown1.Value = co;
-            
+            numericUpDown1.Enabled = true;
 
         }
         private void PersonEdit_Load(object sender, EventArgs e)
