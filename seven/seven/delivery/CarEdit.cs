@@ -34,6 +34,7 @@ namespace seven
             label2.Text = "車両情報編集";
             groupBox1.Text = "車両編集";
             button1.Text = "編集";
+            textBox6.Focus();
         }
 
         private void CarEdit_Load(object sender, EventArgs e)
@@ -81,24 +82,28 @@ namespace seven
                 {
                     errorProvider1.SetError(textBox6, "積載量を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else if (!int.TryParse(textBox6.Text,out n2))
                 {
                     errorProvider1.SetError(textBox6,"数値を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else if (Convert.ToInt32(textBox6.Text) >= 150)
                 {
                     errorProvider1.SetError(textBox6, "規定値を超えています(規定値150)");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else if (Convert.ToInt32(textBox6.Text) <= 1)
                 {
                     errorProvider1.SetError(textBox6, "積載量は1以上を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else
@@ -120,24 +125,28 @@ namespace seven
                 {
                     errorProvider1.SetError(textBox6, "積載量を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                  else if (!int.TryParse(textBox6.Text, out n2))
                 {
                     errorProvider1.SetError(textBox6, "数値を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else if (Convert.ToInt32(textBox6.Text) >= 250)
                 {
                     errorProvider1.SetError(textBox6, "規定値を超えています(規定値150)");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else if (Convert.ToInt32(textBox6.Text) <= 1)
                 {
                     errorProvider1.SetError(textBox6, "積載量は1以上を入力してください");
                     textBox6.Clear();
+                    textBox6.Focus();
                     return;
                 }
                 else

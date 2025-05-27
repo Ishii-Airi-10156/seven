@@ -23,6 +23,8 @@ namespace seven
         public OrderEdit()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
             CustomerRead();
             SalesRead();
             EmployeeRead();
@@ -94,7 +96,7 @@ namespace seven
                 n = 1;
             }
             string sql = "INSERT INTO order_item(customer_id,sales_id,order_date,emp_id,okihai,okibasho,delivered,cancel)" +
-               "VALUES(" + cus[cusidx] + "," + sal[salidx] + ",'" + dateTimePicker1.Value + "',"+ emp[empidx] + "," + n + ",'" + textBox4.Text + "'," + 0 + "," + 0 + ")";
+               "VALUES(" + cus[cusidx] + "," + sal[salidx] + ",'" + dateTimePicker2.Value + "',"+ emp[empidx] + "," + n + ",'" + textBox4.Text + "'," + 0 + "," + 0 + ")";
             SqlConnection con = new SqlConnection();
             con.ConnectionString = sqlConnectionString;
             con.Open();
@@ -109,40 +111,39 @@ namespace seven
         private void button1_Click(object sender, EventArgs e)
         {
             bool error = true;
-            //errorProvider1.Clear();
-            //errorProvider2.Clear();
-            //errorProvider3.Clear();
-            //errorProvider4.Clear();
-            //errorProvider5.Clear();
-
+            errorProvider1.Clear();
             if (String.IsNullOrEmpty(comboBox1.Text))
             {
-                errorProvider1.SetError(comboBox1, "選択してください");
+                errorProvider1.SetError(comboBox1, "顧客名を選択してください");
                 error = false;
+                comboBox1.Focus();
             }
             if (String.IsNullOrEmpty(comboBox2.Text))
             {
-                errorProvider1.SetError(comboBox2, "選択してください");
+                errorProvider1.SetError(comboBox2, "商品名を選択してください");
                 error = false;
-
+                comboBox2.Focus();
             }
             if (String.IsNullOrEmpty(comboBox3.Text))
             {
-                errorProvider1.SetError(comboBox3, "選択してください");
+                errorProvider1.SetError(comboBox3, "配達員を選択してください");
                 error = false;
+                comboBox3.Focus();
             }
-            if (dateTimePicker1.Value < DateTime.Now)
+            if (dateTimePicker2.Value < DateTime.Now)
             {
-                errorProvider1.SetError(dateTimePicker1, "明日以降を登録してください");
+                errorProvider1.SetError(dateTimePicker2, "明日以降を登録してください");
                 error = false;
+                dateTimePicker2.Focus();
             }
             if (checkBox1.Checked == false)
             {
-                if (String.IsNullOrEmpty(textBox4.Text))
+                if (!String.IsNullOrEmpty(textBox4.Text))
                 {
                     errorProvider1.SetError(textBox4, "置き配がしないになっています");
                     error = false;
                     textBox4.Clear();
+                    textBox4.Focus();
                     return;
                 }
             }
@@ -152,18 +153,44 @@ namespace seven
                 {
                     errorProvider1.SetError(textBox4, "配達場所を入力してください");
                     error = false;
+                    textBox4.Clear();
+                    textBox4.Focus();
                     return;
                 }
-                else if (!int.TryParse(textBox4.Text, out int n2))
+                else if (String.IsNullOrEmpty(textBox4.Text))
+                {
+                    errorProvider1.SetError(textBox4, "置き配がしないになっています");
+                    error = false;
+                    textBox4.Clear();
+                    textBox4.Focus();
+                    return;
+                }
+                else if (int.TryParse(textBox4.Text, out int n2))
                 {
                     errorProvider1.SetError(textBox4, "文字でお願いします");
                     textBox4.Clear();
+                    textBox4.Focus();
                     error = false;
-                    return ;
+                    return;
                 }
+                else if (textBox4.Text.Length > 20)
+                {
+                    errorProvider1.SetError(textBox4, "20文字未満でお願いします");
+                    textBox4.Clear();
+                    textBox4.Focus();
+                    error = false;
+                    return;
+                }
+
             }
             if(error)
             {
+                DialogResult result = MessageBox.Show("データを登録しますか?", "確認",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (result == DialogResult.No)
+                {
+                    return ;
+                }
                 Insert();
             }
             

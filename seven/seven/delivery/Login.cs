@@ -39,6 +39,7 @@ namespace seven
             if (String.IsNullOrEmpty(textBox1.Text))
             {
                 errorProvider1.SetError(textBox1, "IDを入力してください");
+                errorProvider1.SetError(textBox2, "IDが不正なため、パスワードの認証ができません");
                 textBox1.Focus();
                 error = true;
 
@@ -48,6 +49,7 @@ namespace seven
                 if (!int.TryParse(textBox1.Text, out int num))
                 {
                     errorProvider1.SetError(textBox1, "IDが違います");
+                    errorProvider1.SetError(textBox2, "IDが不正なため、パスワードの認証ができません");
                     textBox1.Focus();
                     error = true;
 
@@ -55,6 +57,7 @@ namespace seven
                 if (textBox1.Text.Length >= 4)
                 {
                     errorProvider1.SetError(textBox1, "IDが違います");
+                    errorProvider1.SetError(textBox2, "IDが不正なため、パスワードの認証ができません");
                     textBox1.Focus();
                     error = true;
                     
@@ -63,6 +66,7 @@ namespace seven
                 if (error == false && num >= 1000 || num <= -1)
                 {
                     errorProvider1.SetError(textBox1, "IDが違います");
+                    errorProvider1.SetError(textBox2, "IDが不正なため、パスワードの認証ができません");
                     textBox1.Focus();
                     error = true;
 
@@ -86,6 +90,7 @@ namespace seven
                         if ((int)reader == 0)
                         {
                             errorProvider1.SetError(textBox1, "IDが違います");
+                            errorProvider1.SetError(textBox2, "IDが不正なため、パスワードの認証ができません");
                             textBox1.Focus();
                             error = true;
                         }
@@ -118,10 +123,7 @@ namespace seven
                 }
             }
 
-            if (error)
-            {
-                return;
-            }
+            
             if(error == false)
             {
                 try
@@ -132,12 +134,12 @@ namespace seven
                     connection.ConnectionString = sqlConnectionString;
                     connection.Open();
 
-                    string sql = " select pass from pass where emp_id = @p1 ";
+                    string sql = " select pass from pass where emp_id = @p2 ";
 
                     SqlCommand command = new SqlCommand();
                     command.Connection = connection;
                     command.CommandText = sql.ToString();
-                    command.Parameters.Add("@p1", SqlDbType.Int).Value = textBox1.Text;
+                    command.Parameters.Add("@p2", SqlDbType.Int).Value = textBox1.Text;
 
                     string reader = (string)command.ExecuteScalar();
 
@@ -163,8 +165,11 @@ namespace seven
                 }
                 
             }
-                                              
-            
+            if (error)
+            {
+                return;
+            }
+
             this.Hide();
             Menu menu = new Menu();
             menu.ShowDialog();
