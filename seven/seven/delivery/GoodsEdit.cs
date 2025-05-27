@@ -16,6 +16,7 @@ namespace seven.delivery
 
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
+            label5.Text = "商品情報登録";
         }
         public GoodsEdit(int goodsId,string goodsName,int price,int bb)
         {
@@ -24,6 +25,7 @@ namespace seven.delivery
             textBox2.Text = goodsName.ToString();
             textBox3.Text = price.ToString();
             comboBox1.SelectedIndex=bb;
+            label5.Text = "商品情報編集";
         }
 
 
