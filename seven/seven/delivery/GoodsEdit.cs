@@ -43,25 +43,39 @@ namespace seven.delivery
             errorProvider1.Clear();
             bool error = false;
 
-            if (String.IsNullOrEmpty(textBox2.Text))
-            {
-                errorProvider1.SetError(textBox2, "商品名を入力してください");
-                error = true;
-            }
-
             if (!int.TryParse(textBox3.Text, out int price))
             {
                 errorProvider1.SetError(textBox3, "価格を入力してください");
+                textBox3.Focus();
+                error = true;
+            }
+            if (String.IsNullOrEmpty(comboBox1.Text))
+            {
+                errorProvider1.SetError(comboBox1, "カテゴリーを選択してください");
+                comboBox1.Focus();
+                error = true;
+            }
+            if (String.IsNullOrEmpty(textBox2.Text))
+            {
+                errorProvider1.SetError(textBox2, "商品名を入力してください");
+                textBox2.Focus();
                 error = true;
             }
 
-            /*if (!int.TryParse(comboBox1.Text, out int categoryNo))
+            else
             {
-                errorProvider1.SetError(comboBox1, "カテゴリー名を選択してください");
-                error = true;
-            }*/
-            
-            if (error)
+                if (textBox2.Text.Length >=30)
+                {
+                    errorProvider1.SetError(textBox2, "30文字以内で入力してください");
+                    textBox2.Focus();
+                    error = true;
+                }
+            }
+
+
+
+
+                if (error)
             {
                 return;
             }
@@ -69,16 +83,16 @@ namespace seven.delivery
 
             if (String.IsNullOrEmpty(textBox1.Text))
             {
-                InsertGoods();
-
                 DialogResult result = MessageBox.Show("データを登録しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                InsertGoods();
 
             }
             else if (int.TryParse(textBox1.Text, out int goodsId))
             {
+                DialogResult result = MessageBox.Show("データを編集しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                 UpdateGoods();
-                DialogResult result=MessageBox.Show("データを編集しますか？","確認",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             }
 
             this.Close();
@@ -88,6 +102,8 @@ namespace seven.delivery
         {
             try
             {
+
+                
                 int aa=comboBox1.SelectedIndex;
                 int bb;
                 if (aa == 0)
@@ -193,5 +209,12 @@ namespace seven.delivery
             }
         }
 
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar == '-')
+            {
+                e.Handled = true; 
+            }
+        }
     }
 }

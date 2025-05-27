@@ -21,6 +21,8 @@ namespace seven.delivery
 
         private void GoodsList_Load(object sender, EventArgs e)
         {
+
+            comboBox1.SelectedIndex = 0;
             LoadGoodsData();
         }
 
@@ -100,15 +102,12 @@ namespace seven.delivery
 
         private void button3_Click(object sender, EventArgs e)
         {
-            /*if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("編集したい行を選択してください");
                 return;
             }
-            else
-            {
-
-            }*/
+            
             int goodsId = (int)dataGridView1.CurrentRow.Cells[0].Value;
             string goodsName=(string)dataGridView1.CurrentRow.Cells[1].Value;
             int price=(int)dataGridView1.CurrentRow.Cells[2].Value;
