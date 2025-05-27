@@ -75,7 +75,7 @@ namespace seven.delivery
             string e_name = (string)dataGridView1.CurrentRow.Cells[2].Value;
             string e_area = (string)dataGridView1.CurrentRow.Cells[3].Value;
             int e_tno = (int)dataGridView1.CurrentRow.Cells[4].Value;
-            int ico = list[dataGridView1.CurrentRow.Index];
+            int ico = list[dataGridView1.CurrentCell.RowIndex];
 
             PersonEdit from = new PersonEdit(e_num, e_name, e_area, e_tno,ico);
             from.ShowDialog();
