@@ -149,15 +149,7 @@ namespace seven
             }
             else if (checkBox1.Checked == true)
             {
-                if (textBox4 == null)
-                {
-                    errorProvider1.SetError(textBox4, "配達場所を入力してください");
-                    error = false;
-                    textBox4.Clear();
-                    textBox4.Focus();
-                    return;
-                }
-                else if (String.IsNullOrEmpty(textBox4.Text))
+                if (String.IsNullOrEmpty(textBox4.Text))
                 {
                     errorProvider1.SetError(textBox4, "配達場所を入力してください");
                     error = false;
@@ -167,7 +159,7 @@ namespace seven
                 }
                 else if (int.TryParse(textBox4.Text, out int n2))
                 {
-                    errorProvider1.SetError(textBox4, "文字でお願いします");
+                    errorProvider1.SetError(textBox4, "文字を入力して下さい");
                     textBox4.Clear();
                     textBox4.Focus();
                     error = false;
