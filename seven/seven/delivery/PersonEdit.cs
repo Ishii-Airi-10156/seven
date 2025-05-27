@@ -30,7 +30,7 @@ namespace seven.delivery
             textBox2.Text = emp_name;
             a = area;
             textBox3.Text = truck_no.ToString();
-            numericUpDown1.Value = co;
+            numericUpDown1.Value = Convert.ToDecimal(co);
             numericUpDown1.Enabled = true;
 
         }
