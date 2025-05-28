@@ -155,28 +155,34 @@ namespace seven
 
             if (String.IsNullOrEmpty(textBox1.Text))　　//新規登録
             {
-                InsertCusInfo();
+                
 
                 DialogResult dialogResult =
               MessageBox.Show("データを登録しますか？", "確認",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-
-            }
-
-            else　　　　　//更新
-            {
-                
-                UpdateCusInfo();
-
-                DialogResult dialogResult =
-               MessageBox.Show("データを更新しますか？", "確認",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-
+                this.DialogResult = dialogResult;
                 if (dialogResult == DialogResult.No)
                 {
                     return;
                 }
+                InsertCusInfo();
+            }
+
+            else　　　　　//更新
+            {
+                DialogResult dialogResult =
+              MessageBox.Show("データを更新しますか？", "確認",
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 this.DialogResult = dialogResult;
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+                UpdateCusInfo();
+
+               
+               
+                
             }
 
             this.Close();

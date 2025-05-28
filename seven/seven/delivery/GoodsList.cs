@@ -95,10 +95,16 @@ namespace seven.delivery
 
         private void button2_Click(object sender, EventArgs e)
         {
+            int count1 = dataGridView1.RowCount - 1;
             string title = "商品情報登録";
             GoodsEdit form = new GoodsEdit(title);
             form.ShowDialog();
             LoadGoodsData();
+            int count2 = dataGridView1.RowCount - 1;
+            if (count1 != count2)
+            {
+                dataGridView1[0, count2].Selected = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
